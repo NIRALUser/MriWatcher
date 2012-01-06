@@ -1,0 +1,1344 @@
+<!DOCTYPE UI><UI>
+<class>MriWatcherGUI</class>
+<widget>
+    <class>QWidget</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>MriWatcherGUI</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>787</width>
+            <height>660</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Form1</string>
+    </property>
+    <grid>
+        <property stdset="1">
+            <name>margin</name>
+            <number>11</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget row="1"  column="0"  rowspan="1"  colspan="4" >
+            <class>QSlider</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>g_SliderX</cstring>
+            </property>
+            <property stdset="1">
+                <name>orientation</name>
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget row="0"  column="0" >
+            <class>QSlider</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Slider2</cstring>
+            </property>
+            <property stdset="1">
+                <name>value</name>
+                <number>50</number>
+            </property>
+            <property stdset="1">
+                <name>orientation</name>
+                <enum>Vertical</enum>
+            </property>
+        </widget>
+        <widget row="0"  column="1"  rowspan="1"  colspan="4" >
+            <class>QScrollView</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>g_frame</cstring>
+            </property>
+        </widget>
+        <widget row="1"  column="4" >
+            <class>QLabel</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>g_LabelX</cstring>
+            </property>
+            <property stdset="1">
+                <name>minimumSize</name>
+                <size>
+                    <width>41</width>
+                    <height>21</height>
+                </size>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string></string>
+            </property>
+            <property stdset="1">
+                <name>alignment</name>
+                <set>AlignVCenter|AlignRight</set>
+            </property>
+            <property>
+                <name>hAlign</name>
+            </property>
+        </widget>
+        <spacer row="2"  column="2" >
+            <property>
+                <name>name</name>
+                <cstring>Spacer1</cstring>
+            </property>
+            <property>
+                <name>orientation</name>
+                <enum>Horizontal</enum>
+            </property>
+            <property>
+                <name>sizeType</name>
+                <enum>Expanding</enum>
+            </property>
+            <property>
+                <name>sizeHint</name>
+                <size>
+                    <width>20</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <widget row="2"  column="3"  rowspan="1"  colspan="2" >
+            <class>QFrame</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Frame3_2</cstring>
+            </property>
+            <property stdset="1">
+                <name>minimumSize</name>
+                <size>
+                    <width>210</width>
+                    <height>0</height>
+                </size>
+            </property>
+            <property stdset="1">
+                <name>frameShape</name>
+                <enum>StyledPanel</enum>
+            </property>
+            <property stdset="1">
+                <name>frameShadow</name>
+                <enum>Raised</enum>
+            </property>
+            <widget>
+                <class>QLabel</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>PixmapLabel1_2</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>10</x>
+                        <y>10</y>
+                        <width>188</width>
+                        <height>100</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>frameShape</name>
+                    <enum>Box</enum>
+                </property>
+                <property stdset="1">
+                    <name>frameShadow</name>
+                    <enum>Plain</enum>
+                </property>
+                <property stdset="1">
+                    <name>lineWidth</name>
+                    <number>0</number>
+                </property>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>0</number>
+                </property>
+                <property stdset="1">
+                    <name>midLineWidth</name>
+                    <number>0</number>
+                </property>
+                <property stdset="1">
+                    <name>pixmap</name>
+                    <pixmap>image0</pixmap>
+                </property>
+                <property stdset="1">
+                    <name>scaledContents</name>
+                    <bool>true</bool>
+                </property>
+            </widget>
+            <widget>
+                <class>QLabel</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>g_versionmore</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>10</x>
+                        <y>140</y>
+                        <width>188</width>
+                        <height>60</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>text</name>
+                    <string>Developed by Matthieu Jomier 
+[matthieu@jomier.com]
+http://ia.unc.edu/dev</string>
+                </property>
+                <property stdset="1">
+                    <name>alignment</name>
+                    <set>AlignCenter</set>
+                </property>
+                <property>
+                    <name>hAlign</name>
+                </property>
+                <property>
+                    <name>wordwrap</name>
+                </property>
+            </widget>
+            <widget>
+                <class>QLabel</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>g_version</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>10</x>
+                        <y>120</y>
+                        <width>188</width>
+                        <height>20</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>font</name>
+                    <font>
+                        <bold>1</bold>
+                    </font>
+                </property>
+                <property stdset="1">
+                    <name>text</name>
+                    <string>MriWatcher 1.2</string>
+                </property>
+                <property stdset="1">
+                    <name>alignment</name>
+                    <set>AlignCenter</set>
+                </property>
+                <property>
+                    <name>hAlign</name>
+                </property>
+                <property>
+                    <name>wordwrap</name>
+                </property>
+            </widget>
+        </widget>
+        <widget row="2"  column="0"  rowspan="1"  colspan="2" >
+            <class>QGroupBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>g_optionsgroup</cstring>
+            </property>
+            <property stdset="1">
+                <name>minimumSize</name>
+                <size>
+                    <width>500</width>
+                    <height>220</height>
+                </size>
+            </property>
+            <property stdset="1">
+                <name>maximumSize</name>
+                <size>
+                    <width>32767</width>
+                    <height>220</height>
+                </size>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string></string>
+            </property>
+            <property stdset="1">
+                <name>alignment</name>
+                <set>AlignLeft</set>
+            </property>
+            <property stdset="1">
+                <name>orientation</name>
+                <enum>Horizontal</enum>
+            </property>
+            <property>
+                <name>hAlign</name>
+            </property>
+            <widget>
+                <class>QButtonGroup</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>ButtonGroup2</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>250</x>
+                        <y>10</y>
+                        <width>240</width>
+                        <height>70</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>title</name>
+                    <string>Drawing options</string>
+                </property>
+                <widget>
+                    <class>QCheckBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_drawimagename</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>10</x>
+                            <y>20</y>
+                            <width>91</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Image name</string>
+                    </property>
+                    <property stdset="1">
+                        <name>checked</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QCheckBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_drawimageinfo</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>10</x>
+                            <y>40</y>
+                            <width>110</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Image informations</string>
+                    </property>
+                    <property stdset="1">
+                        <name>checked</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QCheckBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_drawintensity</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>130</x>
+                            <y>40</y>
+                            <width>90</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Pixel intensity</string>
+                    </property>
+                    <property stdset="1">
+                        <name>checked</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QCheckBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_drawposition</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>130</x>
+                            <y>20</y>
+                            <width>100</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Cursor position</string>
+                    </property>
+                    <property stdset="1">
+                        <name>checked</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </widget>
+            <widget>
+                <class>QPushButton</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>g_combine</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>180</x>
+                        <y>180</y>
+                        <width>30</width>
+                        <height>30</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>text</name>
+                    <string></string>
+                </property>
+                <property stdset="1">
+                    <name>pixmap</name>
+                    <pixmap>image1</pixmap>
+                </property>
+                <property>
+                    <name>toolTip</name>
+                    <string>Create 3D image from slice</string>
+                </property>
+            </widget>
+            <widget>
+                <class>QPushButton</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>g_loadimg2</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>70</x>
+                        <y>180</y>
+                        <width>30</width>
+                        <height>30</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>text</name>
+                    <string></string>
+                </property>
+                <property stdset="1">
+                    <name>pixmap</name>
+                    <pixmap>image2</pixmap>
+                </property>
+            </widget>
+            <widget>
+                <class>QPushButton</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>g_loadoverlay</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>40</x>
+                        <y>180</y>
+                        <width>30</width>
+                        <height>30</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>text</name>
+                    <string></string>
+                </property>
+                <property stdset="1">
+                    <name>pixmap</name>
+                    <pixmap>image3</pixmap>
+                </property>
+                <property>
+                    <name>toolTip</name>
+                    <string>Load overlay image</string>
+                </property>
+            </widget>
+            <widget>
+                <class>QPushButton</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>g_loadimg</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>10</x>
+                        <y>180</y>
+                        <width>30</width>
+                        <height>30</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>text</name>
+                    <string></string>
+                </property>
+                <property stdset="1">
+                    <name>pixmap</name>
+                    <pixmap>image4</pixmap>
+                </property>
+                <property>
+                    <name>toolTip</name>
+                    <string>Load 3D gray level image</string>
+                </property>
+            </widget>
+            <widget>
+                <class>QPushButton</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>g_help</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>210</x>
+                        <y>180</y>
+                        <width>30</width>
+                        <height>30</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>text</name>
+                    <string></string>
+                </property>
+                <property stdset="1">
+                    <name>pixmap</name>
+                    <pixmap>image5</pixmap>
+                </property>
+            </widget>
+            <widget>
+                <class>QGroupBox</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>GroupBox2</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>250</x>
+                        <y>90</y>
+                        <width>241</width>
+                        <height>120</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>title</name>
+                    <string>Vizualisation options</string>
+                </property>
+                <widget>
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>TextLabel1_2</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>10</x>
+                            <y>20</y>
+                            <width>65</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Intensity min:</string>
+                    </property>
+                    <property stdset="1">
+                        <name>alignment</name>
+                        <set>AlignVCenter|AlignRight</set>
+                    </property>
+                    <property>
+                        <name>hAlign</name>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QSlider</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_minslider</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>80</x>
+                            <y>20</y>
+                            <width>150</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>orientation</name>
+                        <enum>Horizontal</enum>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QCheckBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_blendingmode</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>10</x>
+                            <y>70</y>
+                            <width>100</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Slice blending</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QSlider</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_alpha</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>80</x>
+                            <y>90</y>
+                            <width>150</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>pageStep</name>
+                        <number>10</number>
+                    </property>
+                    <property stdset="1">
+                        <name>orientation</name>
+                        <enum>Horizontal</enum>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>TextLabel1_3</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>10</x>
+                            <y>90</y>
+                            <width>70</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Alpha: </string>
+                    </property>
+                    <property stdset="1">
+                        <name>alignment</name>
+                        <set>AlignVCenter|AlignRight</set>
+                    </property>
+                    <property>
+                        <name>hAlign</name>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>TextLabel1_2_2</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>10</x>
+                            <y>40</y>
+                            <width>65</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Intensity max:</string>
+                    </property>
+                    <property stdset="1">
+                        <name>alignment</name>
+                        <set>AlignVCenter|AlignRight</set>
+                    </property>
+                    <property>
+                        <name>hAlign</name>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QSlider</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_maxslider</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>80</x>
+                            <y>40</y>
+                            <width>150</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>orientation</name>
+                        <enum>Horizontal</enum>
+                    </property>
+                </widget>
+            </widget>
+            <widget>
+                <class>QButtonGroup</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>ButtonGroup1</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>10</x>
+                        <y>10</y>
+                        <width>230</width>
+                        <height>40</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>title</name>
+                    <string>Slice view</string>
+                </property>
+                <widget>
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_zview</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>160</x>
+                            <y>15</y>
+                            <width>60</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Z View</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_yview</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>80</x>
+                            <y>15</y>
+                            <width>70</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Y View</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_xview</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>10</x>
+                            <y>15</y>
+                            <width>70</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>X View</string>
+                    </property>
+                    <property stdset="1">
+                        <name>checked</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </widget>
+            <widget>
+                <class>QButtonGroup</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>ButtonGroup3</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>10</x>
+                        <y>50</y>
+                        <width>230</width>
+                        <height>70</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>title</name>
+                    <string>View options</string>
+                </property>
+                <widget>
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_viewcolumn</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>10</x>
+                            <y>40</y>
+                            <width>100</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>View images in</string>
+                    </property>
+                    <property stdset="1">
+                        <name>checked</name>
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_nbcolumn</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>110</x>
+                            <y>40</y>
+                            <width>28</width>
+                            <height>22</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>focusPolicy</name>
+                        <enum>ClickFocus</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>3</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QRadioButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_viewall</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>10</x>
+                            <y>20</y>
+                            <width>131</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>View all images</string>
+                    </property>
+                    <property stdset="1">
+                        <name>checked</name>
+                        <bool>false</bool>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>TextLabel1</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>150</x>
+                            <y>40</y>
+                            <width>61</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>columns</string>
+                    </property>
+                </widget>
+            </widget>
+            <widget>
+                <class>QGroupBox</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>GroupBox3</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>10</x>
+                        <y>120</y>
+                        <width>231</width>
+                        <height>50</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>title</name>
+                    <string>Overlay scale</string>
+                </property>
+                <widget>
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_overlaymin</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>40</x>
+                            <y>20</y>
+                            <width>50</width>
+                            <height>22</height>
+                        </rect>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_overlaymax</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>120</x>
+                            <y>20</y>
+                            <width>50</width>
+                            <height>22</height>
+                        </rect>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>TextLabel1_4</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>10</x>
+                            <y>20</y>
+                            <width>30</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Min: </string>
+                    </property>
+                    <property stdset="1">
+                        <name>alignment</name>
+                        <set>AlignVCenter|AlignRight</set>
+                    </property>
+                    <property>
+                        <name>hAlign</name>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>TextLabel1_4_2</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>91</x>
+                            <y>20</y>
+                            <width>30</width>
+                            <height>21</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Max: </string>
+                    </property>
+                    <property stdset="1">
+                        <name>alignment</name>
+                        <set>AlignVCenter|AlignRight</set>
+                    </property>
+                    <property>
+                        <name>hAlign</name>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QCheckBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>g_overlayzero</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>geometry</name>
+                        <rect>
+                            <x>180</x>
+                            <y>20</y>
+                            <width>45</width>
+                            <height>20</height>
+                        </rect>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Zero</string>
+                    </property>
+                </widget>
+            </widget>
+            <widget>
+                <class>QPushButton</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>g_reset</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>120</x>
+                        <y>180</y>
+                        <width>30</width>
+                        <height>30</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>text</name>
+                    <string></string>
+                </property>
+                <property stdset="1">
+                    <name>pixmap</name>
+                    <pixmap>image6</pixmap>
+                </property>
+                <property>
+                    <name>toolTip</name>
+                    <string>Reset View</string>
+                </property>
+            </widget>
+            <widget>
+                <class>QPushButton</class>
+                <property stdset="1">
+                    <name>name</name>
+                    <cstring>g_screenshot</cstring>
+                </property>
+                <property stdset="1">
+                    <name>geometry</name>
+                    <rect>
+                        <x>150</x>
+                        <y>180</y>
+                        <width>30</width>
+                        <height>30</height>
+                    </rect>
+                </property>
+                <property stdset="1">
+                    <name>text</name>
+                    <string></string>
+                </property>
+                <property stdset="1">
+                    <name>pixmap</name>
+                    <pixmap>image7</pixmap>
+                </property>
+                <property>
+                    <name>toolTip</name>
+                    <string>Reset View</string>
+                </property>
+            </widget>
+        </widget>
+    </grid>
+</widget>
+<customwidgets>
+    <customwidget>
+        <class>QScrollView</class>
+        <header location="local">qscrollview.h</header>
+        <sizehint>
+            <width>-1</width>
+            <height>-1</height>
+        </sizehint>
+        <container>1</container>
+        <sizepolicy>
+            <hordata>5</hordata>
+            <verdata>5</verdata>
+        </sizepolicy>
+        <pixmap>image8</pixmap>
+    </customwidget>
+</customwidgets>
+<images>
+    <image>
+        <name>image0</name>
+        <data format="XPM.GZ" length="25190">789ced7cdb72224b92ed7b7f4559c75bdbb11832934cc08e9d0704422a81b8889bc4d8798848124908a9742fa1b1f3ef67f9f20021755df69e5d7bba7b6cca0d8473c98c58b17cb9476464fddbdf3e9df68f3ffdeddffef2f0e81e2ff34ff985bbfff4b7f9d3f5f5fadfffeffff98fbffc354a924f95eaa7384d3fc57ffd5f7ff9ab6f7dca3f99522446ff7eeb27e2bba7e027eafb36fd64f3b9ef047ff3f97ceba7f4f7839f06ff987e5a8a4b7afe6ef037dfaf063f0dc71b6d7dfdfc64eb57e81f04bf12fc17fa197c477f48bfb2fdfc28f8b55295fe217d78e1f39be0c3e8bfd27738a2fa4dfaf3922f65f4af829f9772e2e5e92fc4e8c7e2477114abefebf4137ccef33b1e3f2a8bf1f34bfa15988ec7927e15a6edb3f46b5156f2fc7d4e7f0ee3ef5db6f5e7fcfeb9f87129dab4cfd1e73f7edea09f468b929eff41fd388e4af40dfd8a187dfdbd8b336d8f23de711e97153f97d29fe31b7abc22f8307efe48bf88f348db4f3e25515c44ca379e2f89f10ef1751cffa41ce73a9eee417d31fac423499338d2fe91bf4935a9c5ea13efc427991edf0fe8e762fcfc8efe3ca9c4faf9e7e02f023fbfd22f92248cd7a9f8e55292c785f8a6463f4ef2303ea9fa62fc3efb5f2e278b48f940fe97d3c4057ef6e86762e25bf2bb5c2b47613c2bf45d39d3fef959f061fc9cf156f6e534567e5e07df97d91fabc79f97a370be3cf815c5cfefa99fc6897edea75f88f1f80bfa8b72a1bfb7c42f2d95cb11cfe7caeaa791e261f9fb34427bd97fb30c7e1ef1735fa21f8bf1fbe46b5a2efb88f16dbbc15f287fdcf3c64ff4f7097dfee3f7d5cfca356d8f5fd1af9433d50b5b0ebe2b693c2c82bf48185f46db5b49e3107fb7c14fcaea47c187f1fbdafe6a5ad6f1348cffb456dec4db197d27c6f3930fa92f171acf967a98cef17b6ddf70eb6b3c2c83ef626d1fc73f2dcac177d7eaa799c6a3eb04bf1ac62f0e3e8c9f932fa98c1ff9658807c0c9540f0cdb9345693966bc1be293213f68bc9859f0ab01dfb1fa626c3fe3334bb292c6b75f073f51fef82ff4cbe572d09f55f0f388f164997fb22cf51aefa619fc5cc7c36efc7988ef4bf5b35ce3c550dfb24a562ae9f926c1af64aa1f17f46b6925f0a1a17e5649e81be69bcca3bf1acfda3e9f45617cf57cf3ac14da7310fc24c41bf5202bc478be44fd4a9ef1fb86fcc9165912e285fc463282e4f2f7d4c34ab4c57ba87e56553d32d457d039d1f83317c1afe9f7ed5ef00b1d7f1bab5ff599ea0df1afa4990ffdeb053f8fc9374f3e54b234e067387e956a25d6f1f2d3e0572bca373d9fab2515fd3ec7af02bc025fd9ff4a8ef4a57c663eadccb36ae0db81fa9592c6b7513c0a041cf9e7184f9505c65be385fa8de4bcc874fca89fd5b81aa79a2f8857b50c533e56d4aff9aa1e9fe35dcd2a3ed6f1d6dfa3398a97217fab95acaae36b52f55d5c259f0df5ae8ade07fd25fed55ae643fe657faa7398f68ff1512d2ab1ea9f3d54bf8692839f531f506ed4c2f9395eb5a45a0eed63bea9a52e72aa7f1c0fd035553ccc6bf08b48f9cff8af5560fa7b9eaf56abc5aa5f8ef150739542db6bc7ead7aa553d1ef5b7e65d9a697ea6fed5f29a4fc957a3bf5f54a3c037e64724af0d3ed467b436aa69bc70bc5c524b540f0cf9e2cad579c87f8c5797566b5a5f18f2cb555c54563de8a8efbdd3fcc1f8725557739a1ff57cd201d5436d8faf54437da0c7f3b5c067cb7ac0e5bef01abfac67dd1cdde3f92dfbe716bee4b4bdac0f7da996a93e1bc6a78f6a85eaa365fde1e3dc793d1ff1f618bfc0ef5bf55d9eeaf9f47889cfbdc61beb0da4e7c4693ed1e3a5b53cb4f75a7d98f69ffdf308df107fe40fba5b533c6daebe18fdf6d6d7fee8f9aa2e8ef5fb5e7d31faafc1f79ee36db5bfd53c75eadf04bfc8b5ffac677c0dc7d7cfe7c1af057fb1f5956fb5e0fbe097d4cfcbda3e4b7ecbd9f573f325f82eb46f15fccdef675b5ff1ba0b7ea1be53bcf3da462fefd577e5a02755f5f392e26bbf063fa9e9f958dffa394cf19a06bfc8355e589fe26cd554db7fae7e9eeaf98de2b1f08b5cc79fdfcf657aa07cbf097e94abbe733cf2c82d82de17ea8bb13f5f839fe4aa7fd49f3cce73f51df1cc1357d578b2a7eae7601cfdab8dafe773275b5fc7eb25f82028cfcffea337e544f188d4cfb35cf9c5f1c99100f5fb9efa91435eb5be32d7eae3176cff807cca6b62fc3df3698e009c2bbfc95704471ae28d7c96de653a5e67c19f6b7c3aea173c1fea09e69fbca82d423ea3fe637a5684fa62a97e91cef5fb1cff79e4b290afa807f3242f32fd9cfd45efca61fe41fece114f417fadfaf3a4aac767bccf7394a7aa07cc37f3c5dc55743c89771109c1d83e8e77512d32cd579ee72fe645ada2e3c9fcbcc81689e62fc7fa6c315f145ef930d8f873cd97ac8f16c5a2d0f638d6b38bc5a2a8e9fcf479e317898e8735ff63d60c1e35daadff1f8369ed68fed473e4b07f743f7f9b993f0d8d7c8bc2dc16c1fb6747e5cf40a3802decb9bdb09776b9b54b7b6557ffe488fc7a34e6f61a7663bfbcc3e296b6c4bb77ffc478fc6a340af4f6de3e008d07fb689fec33ecc97ec5eb2fc44438f202c4fed1fdfeaf40636d5f89c593addb3ddbb04dbb0f6bd903bcdeb387f6333e15cedcd8237cf7fb98e48cb676b0e277b2a9c0912522e734bfd5ac9f1fe557a251008b0e7a7c6cbbb667fb768087d8095e9dc0fa766847f8748c6f75ec04f1f4ede3b4edd49edab31d3bb533bcfbf3de14b46b1c7b624bc47d635f6cc418fdf1317e251a0bb4210e4824b0322cc543bd011f621931a9d82a5a38dbe61bed4ddbd6ec190a21631cccc3e46f6e2cde9dff0491158f754476be21f1a65ab7f6d2143f44e4d7a1b1422b0ed163e1446a16e69c7611ec12119398251e57f84e66f7cd0a883cdbaab93637662e669df9629fcdadb933f7e6c13ce2d907bb272a4f608901228b6f9c7d6dbd79b615f395bc537bd3acb3a05a1b1dffb3d158809f87e0057800242ecd8b599b5753a7ed9906bc0b031531574063688766df36cdcab4cc8139349fb776678ed0f33714bc6987bf7740e7118818f46f82d15d6c6d0d7e8195a603adaaa30dc7e6d8744d8fd6a51d02e1cf44e582a85c82957f261a6bd4f663f432357df0e1c50c80813327c11cfa52c77b2fe61c91b32f58108d21b018d1c6406e02d40e61539adb41c403074f34f66077e696633e61269f9853281530b07b38de1008e301d586118fa13cf0fa00a89c11931bdaf93735fc8fa3b106d3bfd831ceda343333435f4b78756922b420060a778c7cc1230152a224a9b28368346003738cde1c42492a2655c3ab0c23da00a3e21d4c1e7194098f7a063bc4032c405f2b385a5531101436aff07ab835e5ca144876a82ca56fe0f147d170189f31c6e5cad41c02df39e75deee6f00a3c1660cb257bf4e8ce31fe17ee82daaaec38208f05892d0abb06746277e99640f10d0d61c704f88ddd15e2ace5566e052c60ee7a0783152c12bd7237ee867fbf18e507f077b76096e0f1f7faf1c7d03060e98838dcb97bf7e01ef1ea1e783c01953bf74c440ac9adc0a40134102d60469fbad1428b058b78c305770b3e6460f3937ddac124b60d20701f9443d08861231c0f6898aa2001ad12345a62c0b94924d6b4577c577e313009106951510e88c703acf6ebd0705fedd815eec5dda1052d77055b63dc46508601b0c8dd2bb8728f5785abbb3a5a1ca14d0323dce819adc98edd1e18704cde2bf76f915a1baee9f691079e34766c05384986790c7808aa0d8c32d178e3065a21b894719e17f3024e4ccc9d6b81ae2d2219031b895fc1a30b3c3a40638a9cfc6bd098ba03f4f2c50eccc81dbacfc10edd1162e211e76fb936d078761de001034b8e11371146085a8a315db92e7a7bc80c20eaa1684c51693cb99eebbb7d3700229f77f078e3c62b713d2037aa82823043e303c74f6083a059c0434d95cb21d76bbe814e8976d4de551fbf1f8d3932c8d49db8a11b018bb2d973632070041cc48e38861337715333465474dd29ec51d010432db20fad0516565851df6641c98b8ac62db8a168d094216e0f78ecbd8b95817283f1a16a1961260033fbee5acc2cf110f544a4b93331b065ed66f806a2056ad5416eb97bc78edf87460ddc9a41379fddade81322034c20168ac6912b991317b929d010a64ca0130368488c887944b49cb0364ba40e730922e4ad2a68008d18784c19293b68b8bee06152b7c76f68fd12530f543924abae6c136a5b020665c6680a5666d4f35332b382ef2426163cd06ac103f8811df7a85ce7ff293416406282e8e8ba2e154074a04944c003e2518545788c5d0d8f12df134d5fe0e7c63bd72637a44acf102575a938a090bb78a8726c22a52fe6bd6b202b0a3b12f438da66e50346ca8a7c405677152af93d7038f539b06fcbb39f3bef0bf7ec73bf008306e615ed3d4755a4ec98008fdf8f06620335c5a19b737c5be8530be330170575d69fbb3ad4ec8c388ccdbd3044f100736ecc8b477ec3775e8147a1b337fc36010e2b6178a892345ec80df4bfa748281698a520db008d3d7769fa4044aa9a7d54357d3c4a6ee99688c7b6bf0423e6384306b4539cf71536065e3353f34b7fc54fafe10f023b704eb0eee8dddcf1e768a0bad29a02b3b11ee760f2b7e725d3cf8073040d6b7be7affd027c39222b0493a9bf08dabef61776df5ff91b97831d2718c5aebbc488b6deeaa580c731b8f114a24491780212537328d947d881f95e53d9c02a4ff1a800678d43b4ca7f41cb6ec056b1cf4eda5305063572e61668b5a0b397d03b280a7a750f7ecc7f231a6b53f83bc4d7c82d70e62e23fb8c232875205a647bc814524daccc1578720a441aa8b44aee50b070a8b688883cd7fc3dccd9136ac648221d788c021a9b5af1d058c926b07d6061a09d52ad23efa012db93da832836f9eb61c0c2fa07608196c06638e78ce74bdc0d58791814edb37fc4a83d2392c010e051468b9157cc292afbf56f404374e21ab135f42bd43253ff842a40ad1f1e4dd7e3d87531dec7401b7330db9008855e4d1d18012dbda049fbcafe1c510c76a03d9754bc25ab0e4124ac07091a60c4be7ff6cf78f640fd4cb20d578e1a8286bb641e5df137431c6189a33affd51dfbaff2bc41c3cdc012989b0197112a21cdff2b28c912957209e8b74447cd57236b273f436305aba3de9ea145a26aecbb987f120bef84e8c6281e420d4660eaa3e9a1b7a7c0a32ab351641c699ddab17f41bc38bf409f10eba8138809233fcc2e80c7677243b0305b1cc0227c0bfcf06bce7d57f28c471f538317450211fb0af4cf51ede099b96e02ddb8701bbbc2e85c41d191e29c457512118d5344cae22768389bbb0ece70c0bab0e99fa06453e4b6987a2e356ee35da544bdc3dc526a909949ec81cfd1b37b57338f3a4662c0eadcbffabadff37b662966bbc064297c477d7f057635655e8788f98ce3de9a336231429c1231680dd0907a0b38400771869a6f9013759c778e632c815f172d77ac0a67c82132e7755ef922cf3766cf9ef84bf077e564aef915fcffa16e98c220fe1d144d98001c1c50800e42fd0ac921601bb325ce3d232e920594233dfc0623253a8229798e96ec6d91f8ea46fec137050d57a67a5450078467e4dc057058cbacdf2d30dbdb43dc802d4461c39fd1060d98a03164c53f404523479039c8467df6715cd4c0e875d375306e8fa2e9123d40e4dcc4687f0cb45a44e3c7b5a831986d41190d465de64b0914ab8ee3ee53055b5bbbf707ac6f0a8cd4c0dc6e1031c666fe2b6aefa12bc090048ad223971bb4ba3f444554964d406ad09c42322f58a1f32cb0c37fc6274ba7ace9ca33f51279592205d128fcd897f533ad40d1fbbee923b7c28ccc09ab5c7142f4798d8c3b7c730f38bca8c2da3e38fa003ceb8894c50fd070c0a2025ee45ef4f115e77ef04744e1deb77d078fd607bb47a569d1b2869986a841452518a09d0dcc554652c1bb978046d31f7b43340a99e1e22fc617e77bc302dc001a75c610a3491ff22c68c8fc148c5c05fd4881fb0a5a7b2bf33dfccb614ff82b79482a0051079943de83a9c718db316a8d32d4b6edeb40ba01d5587f178db545d5e046e03bfa067da8a0f58243c777618ac41154f9c1f77c1f8f812f50d99ce0dd2162a76fcec8902634e438e0d142947e153c8885c5f14ef08b3dd46b35d6e93a9ee580c55ae30468b437dc514c24a2040de8afe89fac29f611bb5f808309d9aebfa3eafdd00aa9db0415d478889c14ea7ee030530177a16164cc6e46f9808699db4344bdd43c758c409bb1d1f5239a2061fcd81d803d0798b30df1aa639ec5f313e033f74d8cf417564f681db20c6a35f035314dc4eb4b608698c58c731fd5abcc36a5be4e8205d500162fa8200a465165c7caa8530e805c5fe20138e43b59ff2de779e6bb5d5ca4e69fa1e21a480506557995fc86de9d835b9fbf8bc60cbce9e277923f06c4624e1cbae046cb3db8a19ffa533f819d81197d3c8b2f8f53c1c5cfc010f407b350ad45245eca4e57a122b3401d3b40e668c24bb842c1fc443c603a13c7f305c64d22ac2efc114c68f2f7dacada49064d1b6e1921f9ce40ada761455a6dcab879daaa7b9f5c8fc0ab1eb46c843395a1640f509ff1bbdd1a3b688019753043f2e600355793bcd00819f912b098f888584cfc1848443ec6aba97205dea9bd065f3cd4699f0ad2440b668885948a7681fe8f30fa832d0ebb967016d6086b130918bc84aed61411c65486b8586e59f1441ec80ce60ef90eb33999b3710d4eac10cc79ac062bfdb71ae00c39bc2bb319e4ab9e6ba3961ea3c6fc161a6b3bc151f681456c2ef1d1060bf0820894884682bf11ac042624e447c9c74004ecf025c44d07b3330b361bb2c3c8f525b063212b63617d1c866c77236b9bc466636fc8a8b15e679575c0597b93bc381056880187572adb3966644f1f951dedbe62dd2babaa88a90d22a8896486b24416db877a24a8bfbe3d879ddab19375a82914a30eadeb8011a29e2df47a02c53c43ff4becbd6092e0f98c5e9f96f82962a52f5ae23244e4a5b4006d3e44accc30932a6ff0c0fc656cc6fe42ffaa6d5f6f704942d4f0593208c6b469ca789513895b8cd8109922a6b249dfe768ab5a3be0d1e22757eed12822b7aa27e093aceb0b1ee02de660df8e94a9c5cc07cc8a112516c75466b490ad0fa09109f0281109c1200e0fe148121099f953f9a6f0c3bf202fa18e456c83fd9c573efa474143fa0d555fcb3a833c9bc9e6159f0591117923785c889a0001bd0220d75f0ca3a30ebc4aa880a4d7cadecebbdcdfd9e63fb539a2b78be3d435e32147e068a85d4f4cf93b682c6c0dd5df0c6824c8895744439911a3a7854f89451f8a718a474ccd50fd104c6664475f54c4f76c8e4fe6c88d31b068a02e5334ca3253102c1027b29afcd15ed5022663c69460d2d822722bb35ab0a287f9fbd336ef73cc606d64ee14ed9a4abe83b623b6a1fc7e5b1539a8676c9e82f276a109fb50f66fabe8c28ad6ca7a8b64d62e2b2dc1fb06c72d5057cc38fe2546c838e02126af365a72c62c33f17d542d4b1733bb48b6ae6e2245702007d87f9961a985d7f29e3cd68c9c815e0b112c1833535655b159a1d9ad6dde3f217f6351f990f3ced0a689e4392a7c07ef460113b936d3a0a2a11641259a22a77c5b37507701abae69d814d56767374e8886c6429fbd4f113929cf390ecf518821f91bfb017e53c26f2b3216b0b3ad6e8cb96eb8e65cf39033cd2303c3fcff5c5667503d4f898aae5b911fc0f0112a740824a816018b2ef190516be37c82c429474a5a3181aebf550353a989d0032889f3a820d6aa203283806eec61d6f6f7eb1b6b7f076de9615e77c27c721218a83d136e081629b3c8001a320e91a2e3a0ea21dc488046c42aa4054dbf94554e64811027c0e13379203d170c8ecc03af423ff0d583be0f23471835a2bb8fc82fb7c4e20019e42d42542bc6e879c2f84d381e11db28ed387543bb868a9da11e2af08d166be6024c73cc78877e85194d672756deb831b1ba0adf0b6874985b714cf43e253366acc6a5268f8276ced006c429397316d84185c57bd0792b573564e6702668609cd7eca530e2c19530e32fed1af7296c98126286aa7a855a12f37b9380b5bb6a21bc901191b1d14c17d16681aba264c00ad1827a08fc986256d1f298df4ab5cd7a485636eb3bb3b41d6ec8d507542dc73bb5468baa2915f92ce0310332bdf03ae118a401a7f1b6358816b44062d5491ec0bf29d1609c70ecc908f4bfade6339f9936f110441e141165073464e4646d34b627d4cace364e5a38f794cad9231ffa54fa4dee8f4274cf24ef6374528ba8f187e0ecabcc6865c50ae3b4c0cced2d56de5454aec720af07343aa1eeea038da573388e9c73c699da0023328376cc586f68e6956a2c0e9c29c96cc60f45ddc0b733454398b18d927b658620e1c678d48048859e22424c0243c69801224a90a9b55d9d2d33aeb60aaf2dd8a8fb3864ff843ce138524706d6e133c92f8f46729d542e983bece495f7396566663b6808134b8c8e09d190ba7c802c63108b31daa1b558baad4d4f6931a3e594e3287956b2e26d500da22151e2334141305014e4afabc96be189464d50d431d7890760461b79f50d8d96f411e324b19b9013673b6a360ed95f2bc688ea025db5396a43c1a3400c1ba9e380c61b3bded058bb4be49c2674c371be86f362fcc754c46938c714efb4703cc1bc20f625ceeea350999db23d7d9cb947e5bf77b26be316639bc89ab15c879228911e4b6c0081481ff02b1b640491c00e899701d82535dc7960c6c65a68558256cc42355ce22894d8fb9875c024b035e41ab40ad947d9e16f3087ab038d277b80ccb261c75b2deaa41645162ea3de9853ad0b39225448666553c185b332645db9b7075a32e098a42156fa1c173015f56887f5db0939997046d9e00afaa16041cd1c13918082dcad464c2afa57f008fc38e715da039b7116d9d972438e3ef53dc6abaa7b42e64a9d38616e8d43f62f31bf9c913b507da8e9956417e6ff5cd6b7fd0a3dff8806e629a8cc179865d581866021479ceaac9deb19c3a01e03b46100b40deb9019354cc6e6942a9e008b02bf3f1134306b1e723db90b34543318275b0b08c88e28c54451090a0276108d04f1bb1f2ac24ea8845e398b1c1089195b51e2b32ac71933ec01bd28643b89eb923945bb598bc93849ad6c6415567796bea121eb40b29baf8c33cb38949849a7444062e420d43863ce66710ed4bd8e2d4983b692b3e6945cecb062b907e5be9833444a03aa31d538d14851b510add8c542fe6e2346d1e8620efe25f075834687f13a254337b9bfcf7624c4a4c42c7bcadc9f84fcabd5d00c6395aaa69952c8ff43448bae08bea131b785eb801d1a2bf738db20cc4ba2b0aea1da64026f12b6402a31b489d1038470ae719837696c9f73b5ee10684c3658083754376999ab6d51c802268a05d1c0ece9c05cba971dd5500d5d627432dfa18acf023fd25005686ca4618492905f04a31922a5c716b65c5b328b91394bd33c730d6c77edcbd8ba3b46c531e3bcad45859885acb23141a6e0c8a86f50a7cb66af949c94558e9b9d99a544ca05afae0ea0000fbb686cea0c8d974d8c6c70d928a93b271ab2563d0f15e1464397c05df44bd8db63a617a6c8a89990e766d40c5d8599901d7d5442a78c633982f0766a64f578613f533976d140ac98a52d9b73b0e391f88387d08822541a3dfe15dc07a87d0a66136887cbf04ae6b425ce075a3b6dbe07fe17bc7af8caaa2b549fcca2b537f508af2b1be508fce0b53a2b6b848ac6fe961b6d722266457e4ad64aecca2c4e6a01c34a28226fa310f19bef45414565a4eaa8afea8286dd0f59e5fd9af9d475fd57b3c0bcbf8f79618bd1b2e41c4d6dc06760e262d63d25d0e281631187f9fc1599f186461d7d111d7cdda8c60681edbe588f9efbf79a4a34bc2a07af993491f5e7bbcc60ee172d3b602fa5ba4a193d0f1cbd94b131604d94849508b11919dc0abc6df2da8381aeadc28ae08735731c55ae0c215aa85b5738f692474f89b4e231630d26eff6a81786f139e0ec49e7daaa1b389fcdd09763e8e024a0c10c8b9e7eb64ffe4e4cf6c0e259d6b39c6a87e014f01034641550b3fe7cbbaa33e0386f66ec53668fbe7bc5e8156c97094ada63ae53f54b38fb9c2217bda1315334b6eb1cefd1f862270e39c5ee831d99bf44a41ae221eaf040dc07b41ece2cac28707e2331c311616db6d58cb9a886ec1a41e4276eb255d15bfbece56e80cdfd167a1d475e0115f3d938e108112911bd887bdb646db21d78e11807a75a036db3dd34545b122569c8769b19d598ba124133d26d240b1a0beae899a97e433778ad4dd8e18eb90a798c39cedc73472c1960b4e7e487093864a2a0c402b51aabde4ec002aa674f3027deb30d7713d078b4cfe0c20cbd7fbf33514cde2126404490680734647fd30575fd7e8b462fcc16a4ae380d584c5901f5b8bed00bf397016b23e12e22c6c8276f717cef0ff50a2174e35b394547c9fb857b41a5760e3ceafec0f11f2232a339c5036f9195f2de763b781f2c6a717579a4f984771a34cc8a75e8c44c91d567dfbc8360d7e4ee1cc44d98e13f18b9d69eb80598bac9b16db0bd60a6884224f4c21cfb2a288ad41a0fe47346768f5997ebdc69b4cd77b2f32c061a526f5c7fa8be76afc45adf404f2e050f1c4fe6b0122d85f69faf6ee45d7e26e7cb88d820a8f509af455e81194dd96f009ebd60ee95313a3ede1bf2ad7b450a595f00838fb85be9dcc815c6e6bbfa4bae7fceb89a10549d0f99bb1aae5049e41ac676c6ea742cb9dfc5a112daa071ce7c7768aeecf18759db6e6b0c22f1c58dacec9d6fbac2e5fe45b434e8866194b48906f010ed5223466d6231f768bd69eabe455306d3c7dfb9afe4fa3b782066dc6d58355dc9ce08dbdfb243ebf23efb3a60d42826528926f8c490393a768e9573ef4355a81157e7950599d36f5647bf8546213338df7023b4e30588cc98ed85634364190f069cf82150889dc7f32b90a2e1cc37445e769ad7658785bb963b99dc1258cc7ed79d7d39ef4069db67ae02dc20332566b1cd2b5df2afe0193748bc65ff25595a0a5c1e68950e34ccbbeb0df77e68fba8ebe40ad22ca8c6f7f6f6acedccaf89c7be91fd412b53030af7dbab36ba77a1cdbf23e6d4a1bfc13744f74fe41a17d4ba69bbdc61dee195dfdf7797e3db7d5d87b2ab90bb1222b7004b37da71a223cf5a684024f499d98e59cf51cb34074aee79d9d10c8d13d9437b8cb1dae37d81df4743f67de57e2dfb2e3093d3bb4da402b90ad7b6dabef3c1da01a72bf70805963d4b728f46db7599437e0f12ef4725b7c7be6ce47af60554ace0fa22cf482535e8fb03abac22647fa98e97cc804bd642aa215293bfab91c18c13a8511748ecdbc36d0bbfbf27702deb668207475aae25466ec965809b0fbb7c5a9bab7cb2ff5166c140ae0224eec0c0e94f73c88fac902b1b760f33a79e5cdbb7a9bbf39bf95b8b5a264c30d470aa26b3bd6a5cc87a619e3bf8a0a052091da012925d8993ed9d193fda2fba82b60b3f4650d413e4184144eab72546fd11acbd54438b72eed894ebf14d444826f726b867738ae3fed1fb800b3bc37146b2734cf6c8414b1db989b98a66322af926fb1b561737aaf4cc762ecc294d4043d719ea56aee9cafda8b266fe7695fec7bb6757a80fa76eae7b959031fb44e492cf0bdef93b941d57b0324d77a6bd38cc2531a6bfeaffb140ce47bb33d67265303c271e885bc9f09afbb51a6635e4fd883865dbac9731fb682534949d5960bbec801a219af771ecdfb27b564deedf9bbc210206200ec27d6b975be3fd6aeed88d641f0a32da1defe6fc6318bcddb72afc78b60db9cb5846c15c118f7b5f050ba0dda1da31213a50572806cc73fad7b02e14b547e5867c5706ae23dea159ffc1beafef31c4c8dd07889a39fbcbd8c16ce6847b998f755f97ecc0c73786e0b5ecbcfde348bcbf8b576ac24bcc28078cd67dd0ee285c8f6f6fafc76b0d3c128cf0e98d5403b01896a1f252a5bfa40a4201658f90ed02e5ddbbdb7eeb1d196b7ca7903d2ba844d6aee34e9d854eb6a11f8fb29bdd4f8ddc0b0edcfe3027bec58e0d1e1d2a98ece5405508cd9a87eb4d9bbcd6defedd35b9763d927572ee722716b2a7cc266ef8219a7fcfdd3a73d1556e26caf54e54ee4b1685b8e3bbab5ffc7f277c64c80c0cedca9e4bd9d3267799e0a47e27e377772acdcebb7c7aaf6a817a4bf60ae9bef88160f161ec8cfe2f59dbff8fe0b758c1ccb76644acf8eacffa1f243ec6cb8c7bcbeec0903ef54aeed3a94145e60193f907d35d8d2f2e67c6c3cc0bf5718577d875511fafffee7cbbdcf8e7fb5f31feee7f00c0583a237ba61b18e92177d75d480f65bf23b4e106d5c80b674a624778e79c774c490d746e9b888d3ae6e55fa1171dd441bffeeee0ff62346850107fedcfe59e292b77a0cb1d9f722fe34c771286fb09a10b21f3b372641524bb78bffa05b3ea9f73e7f83fc21c23e65476e44a0cf07ee028e4fa5d6b4a6c9892ed138911ef54a8bfbb3fe7bf031adebe4ad6f753dec9d79011d73da572c7dbc64c1f38d59411a80cc009643ed949fdfd79d3bf2a1a620be4b26b59b9c06caecd8ae72530606b72f70a6d810c32c1f77f5c09fd2ba321b6962c2975905c7d973bf79171744f769df56119d55122b510bef5f34ac8fc37f89ff1a40e72f60ebdcd898bde1330943d4e888c9cb1f13da578bf16e9fe45fed744a9ef7ef21d544d57b048cd5cf3ef9529f0fef77fe55865bffdaf89ffef7fffe5ff038b5323ce</data>
+    </image>
+    <image>
+        <name>image1</name>
+        <data format="XPM.GZ" length="1952">789c7d94495314411085effc8a09ea461869afb584e141dc65115c58343cd40a030ceba0a2e17f37fb653b02464872986f32bbf2f5cbac79b832d9dbda98ac3c5cba9afbf9344ee2a1bf9caca4ebd9ece6f397c73f97966b3de17fdb4e9ae5074bcbaa4ce244755d67fa083e01c7aee86e60da1eb8ef7aa3259fc0ba773a23bf0f36bdd705fc09ecfb64703e55e0d067d3e27902275d991e790bceba361afc6e605debce1870bb6087e70fc08dee8d47fe15b8d5da04f03370a7cd98df5a30f4d31e586b6744ff5bb0d1de88fee760abc3c8afc14e475ba3ff1938ea62c51f07cea6b6d0af66e0621a0bfdea7460d3186da19f6a706f8c15bd4f47b6c22a83b57156fc5660c39c50bf0b76265ad177337212561e1c4c76d04b6be0688a93791f0d6c2bdb3af1fb18dcd8de5930f6c1b6563bd1bb09eead75f05349bdb1de899f0d98d53bd1770e66f50efe2ae1ec2a2ffbf0616057b9d68b7f6fc09de301803598d578d13305b31a2f7a0ec1ce452ffdbf82bd4b23ff000797bdccf7e5c0bef15d907ed86fdf7b1be4fdbf83b97b90fe0723bb917bb0f13e408f8ae0e87390f9400f5315e47d03b8843ac87c3e0e1cfa60a2f4c77c830d3e4aff6f601742947eefc131e4287e5f8073aca2ec0be61b4aaca3bcaf1938dae813ee17613fa38b2149bf6b708829c97ec2cfd4a436c9f3d09bf8422699df0e98d72989fe0e1c52cc723ef464beb059ee17f6299b6cb39c87fd67f37d16ff9f80534e45f611fee53204785db85445cedf1898a92ea2ff0adc71885fabe09e43fcba046b0ed9971760c321fb82fb57782045fc9b83e310036f0ba72190c77d833cd18fdfbb823fa927752f3c05f9c439f14051ba15990a1dd0214de98849fd5393e9984e68c69f4ee98cceb9f2e24ecddffc255d719cd29caee9eba2e6dbbd3c627bce6abe8f3537f4839edccdd32af3193da56763cd737cb37aabe205c74b7a45af17356f688dbbadf3c95237a70ddaa4b7b445db8b9a77f49e6b3ed0475aa7c1ab1ddaa53ddaa74f54513dd634d4b2a28e7ad264b887254795223e6557fdf16787fb6e2aaf024d5554496555d401edab4335fdeba13a62bfa6ea9855ecf209277cce1acf23ddf3797088ebf8bc1939758a39dcaf49a82bd4a83375cecad3dd9adb735717dce3d6062ce61eff1fcbbf1e2dfd06320fbede</data>
+    </image>
+    <image>
+        <name>image2</name>
+        <data format="XPM.GZ" length="2993">789cad955b4f16491086eff9155fac3bb229677aa67ba6b3d90bf8001545c103a09bbde8232022f0711030fbdfb7e7ad11510eeb264b87e89379535df55675f1787eb2bdbe36997f3c7772ea4ef7c224ecbad9643e9e1d1c5cfef9d71f5fe71e293551cda4aef5443dfa6dee112d4cc284aaa44d9fc053e13ed511fc6ee0a65295127e3d70ab9bbaadc1eb60dbe8568367e0e82a6dc04703ebbacb4ebe3f07fbd6e80ebc31b069db6c2af02b70a79569c0abe0ac9df1e03870a77434c8972d381bd7c9f76703f795f15d002f8395899de87b70637297c106dc9adccbfd09ecbbae477e5c8353e77a87ef7e64dfcb7d019cbbd0cb7dc72347d1b31ed85685e11f77e0dc470b3db703bbaa4f56be57e0da5656faf112ac6c6d912f3d056bdb3af48f4fc1c66a07bf780bdcdb6ef45bbe5b6b5d0bcee072416da17f2f5cbe4b3f96c0d14627f51e82b3ab9cd47b32b06f5cebc4bff56fecc53f06b74e7b998f45f0d03e99b737e0a15d922fe6cd177bbde4f76264eb913fa39fbeffc684fabc75de4bbe5760e782efa1c77c79efa297fa3e80834b5efa21f7275f79f11f7efaec6b2ffec3ef50f946983e826bd528c4a72f606593427c7a22ecb597feec831ba595f8770e6e5da5e4be45e1329ef08745af7d1fc49fcf235b61debc66790f1760e3949279c67b0c9df741fcc2fb09bd0f41de9f035b1f83cc33fc0acea7207ea1dfc1fb1cc42fbc9710830ae8376f83536882e48ffe841c7490fbb11f6215ccc8d827b10e5d90f9780b6e828d522ffc8a6d7011f56d9c0a9708e2ef1958fba691fb9470f051e605fb209a10a2cc0b81bb90a2ccc701b86f6223fdf804766d25fb8ab19f628916651ee4be122d4abd78bf314513651ed0ef98633732e62155e539cbfbdc1d3946f1730d5c4717a5fe4bb08a3ec9fb106eaaf2035e11f64698478e3149ff313fa98d2949fd7b601d7342fd8cfd9a4c2a2b1c8c7a5397ea24fd177daf2b2df1e14fb2a949926f0376a94dd27fcc5ff225a2f8b33b7297c41fbcff144b04d97798cf948b42fa8ffd98eb14b3dcb7036e729d257fecefdce66a64cc73d64521f9635eb3290ae4cff8fb5096b5cef2dee16fee8b42f20f237723635f655b58eac13ecfae2884b1ffb21f0e18f393c370101ff39ae370c0927f56461999d75f3fff879e891d7b0ee5444e0feb39f30eeff21e7fe47dfec407e57f9f79e73e3d1ff2111ff38c4f8afeb428677cc6e7fc858feed2f3055ff255f93ae3055ee469c96989974b8495c24777e89f9468c7fc949ff16af9f739bfe035f04b7ec5eb3feb79a3447ecd6ff86dc9fc1d6ff2166ff37b5e2fe703575cdfd29f97384bac8a6ac64dc9bf2dbfcb25ba66c31df7b7f40b6c799598a744e478997ca966bb44dfa74091d24d3d65daf98593bfc7a75ddaa38fb44f9fe8803ed3211dd131cde8844ee98ccee90b5dd0ee4ff91cd2255df2265dd102ce224d69ca8bb444cbb4422bb7fda427f474d40ee7d9a0c759a5e7f4e20efdda0df502bdbcd64f6999e31dfd3afc41ffea867e7af7fcfca05fff773defddd06f7c577373df3cdfd0bfbed6bfb97ffee9edb5fedd37356f3cfcbe6813faad1f33bf5fffd0f9cffabf7f9ffb07f6ddefad</data>
+    </image>
+    <image>
+        <name>image3</name>
+        <data format="XPM.GZ" length="1203">789c6dd2c76edb401006e0bb9e82b06f4220b36d4390838bdc7b37821c6697bb968bdc44d39683bc7b76fe950ca40c2ffa7e82c3d9a196fad9e5e15ed65fea4d5a6a6f5ce646f492f59bd7f178fafdc7b79fbd85426685ce4495150b5f7a0b6de6b2c5dc0ba93db34bd4be6898e7cc2a2ff3123c61d6a22a6a3c7b009a4ad482b9cd14b69642318f98b2ae83cc99fba012a5ac985b6010242df395a9942c15ee6e32752ead72cc2158ca4661c827d02babf1ec3bd3182d0dc6786052aebdc1cc13b0348509cc0d50989a4ae6088c4f12de3b06b55184566f606c4d92b90636a62162ae302d9f00ad4e4149caa2d51da848db9ab933a3b1e87c051ab216bb5a06899cd5cc7bd052630d739de94a2b2c8eb00ad67137f80a0114563b8cf131a37118e305d4d6391ce1116c5ce9b0ba67a62f1bebf18d08acf2584c976865e221289ae071a21b50faf8e7611e83e46b8f992fc1e0adc727bb66862a140153ed8175c8136f4111efa3d505a86280e5ec823ac880e5d81955e2143491786f0352bc0f7ad0f2c55c041d5fcc33b0e18b39005120d72251dc5dc33f6799a758c1c5ba9e67841a71e66e52769bb23b97426429a2fb9461825944e3ff640fff668f4fcf7f652f93f6b57b7b9f6753a28fe5b66d57ba6e756d98b2c1fa46cbb5d9c5dadade41b68ba89d70d60df7904d53b68fac9b9d2d65077f6487c88e101dcff782ec84a3d3cf5d9d7176ced1c56736185cb6ed1537e39dfefadafb0d2bd532a5</data>
+    </image>
+    <image>
+        <name>image4</name>
+        <data format="XPM.GZ" length="3105">789c659547531c491085effc8a09e54db1916a5b551d1b7bc009233cc26eeca12cde0d46828dfdef9bf3724004526b806f3abbfabd4a535f3e8f0eb7d6479fbfccdc3ff887b3388aa77e3cfa9c1eafae9efffee7af7f673ed56e34f9df9951f3e98f994f3e8fe2889a5ce7264c98ea09b755533509f709dc367553c06760d798b6037b706a423b80d384bbbeadbb1aeb1d8387b6ef7adc8f60df9ace800b38b4b6b388df03e7d6771ef7c384fbba4d1df4d011b8697397c10edcb6a5833eb260db357d0b5e0487cef458df9f8063677b073e9fb0a9bbd8ebfa9be0ae2ba6025f834d5f1bec17ed826d2f1b006ec0b1b706ebd13a38f783817e5a0097de1bdddf9509dbba8f46df87fdb24d9f8cfad907b77d36eae706dc99caaa9e5bb031b5553dc887b5a6b1aae707783062107c078ec65ad587fdb6c9388b7cd177703683855e1ec0c578ab7a2f27ec2a136c043f811b93aceaadc0adc9167ad94db94cd9803b539ceadf01f7b6725a1f3fc1d6760ef544576067db29b7e041d2a57e743d2fdb8dfa21d4af0b624feb07fa5db483833f463dbb6cbdd37c842907a7fe508faed8e8e08ffb090f954d4ef3d3816b9b9dfadd0237b64c7919dcbaca69bef4f9de3583fa3b005b272d009e053bd70feaef023c3833a8bf0d70706219bc0a4ece0f9aaf43707661d07ca1de87e2d2a0faa1d7572e0fd0cfc88faf876a50bda7605137a8de6d703b341ef9f1d87fdfbd32bd8045ad47bdf10358d47af861f8f3a2d6ab7ef49388751ef961f4ab972fbcfaf90616f55eeb11fde8e31094fdcd94a357bf8fe03424aff380271c6a5f7bf861e423c8b808aa57ef77be0fbafff7e049fb69bfac8127e5adfae7c1521e41f3f175ca43801f46bf06f7ca1ef340e487a07ec660ef63807e86bf107c0a5a7f987f21fa1c345f981f21872a68be503fa1843a68be90ff58855699b0dfb10e5dd0fc3d839bd0079dc797af1cd53ffcc43618659e0377d2bed80f46bdc53eb8a8f9dc9ff210753fd09fd18610d53fe661742146ed37cc7b49578af0cfa88fe8438eea1ff32e8650a2fac7fc8d293611fdc6a8df98631bd53ff2114beca3e613f33f55d14c19fd92ea68a3ce13ccabd4c621a99f2570177d523f98c7a98f21a91ff44f323126cd2fceb364634e5aafd81f29af2aa91fe433c9d349f385fa4bf274827e8ff99b523249f563bea62cacf9c3fc4d25d929a31f7225e344fde07cc875f249fd209fb949216bbe507fb94d29ab1fccdbdca59cd50fe67dee53c9f0c3d0934daeb2e60bf590ad1ce8da7fe8e73ce4366b7e304fb397e353f3837ace415650bfa753b659f385fec94956805f8ffac94522d40fe669a9732aaa1ffd5cda5217d58bf34d0ee76aca98f7a59708d58b7a2a4622542fe6911c1e7dd1fe427e8b9308d51fa76ca78c79510661f583f3a0788950c67957c2e40223ff254e2ef881df9226d784b7d16f05ff947f5d4cec3970942b71fef5fdfb382e7cc2a77cc6e77cc1977c257f5df3c9c738bee15bbee331df4bdc83448cf9919ff807dfbe8fe39ffccc2ff2ed9867798ee7e5dd0bbc284f7e15be7d17b7244fdff132aff0aafcfec66bbc0edee04dde7a8de36d59698777f9bb28dbe37d3ee0433ee22db98eb9e2fa2dee499e5be046ee8eb9157d9d7c1665b59e0d5b766f71b33cf02a31cf1391e7450aa2f65056bba04889f25bdc0e153a11557bbc49a77c4067742ed7055dd2155dd3cd5bdc0dddd21defd3589ccef198eef9851e788e1ee9897ed0cf5f7ee9995ee42db3bc4c737c4497bc44f3f2d3d0022dd2d777714bb44c2bb44adf7883d6e4ddf314689d3668939e38bddbbf1bd9818eb624729b766857def69df6685fd47dfb90b7793a905ddea2433aa26359ada29a1a5ae1970f7167d452473d19b2b4296b3b596f91066e3fd68b672fa7a30f5e0698cf5e0ad79fd0daef75e54f794df675d79f512d9f637f4e6bbcfd7b1c622ffca5bff2d7f2b9f1b7efeaf4bf3f67fe07ca39d8dc</data>
+    </image>
+    <image>
+        <name>image5</name>
+        <data format="XPM.GZ" length="2977">789ca595594f5e470c86eff9159fe2bba872ce32736646552f0864870412b650f562b6032490852501aafef71ebf3e6995eaa3a9d4f326178fecf137f6d8e6c1fdc5c1d6e6e2fe83958bcb78799217f9389e2fee97abb3b39b5f7ffbe5f7957b5db398feb59d5f74f77e5ab9478f1779414dee9d1d84d9806b5fec087b028fc60e097c29dcb6263a3d7f00eecce822ceaf817bdbfb067c0136d67907de010f4317c0740af6a61f5ad89f2a0f216afc8733c76860bf0647d727f5ff0a1e9d4b16fe4f843bd73bd3c3be0b8ec65a0f7e0f2e6e4c01feb86f578d9bed2f85fbc60c16f1f819d8d8e2d4ff2dd8db61ae47061713adfedebab069cd68e1cf9bcaae097adf77ca3e65d487703fd3fb21213fc2fdcce0c7acf9ef83834f49ef87fc4cf26dd4f7427d4c0dbdfaf3e9cc266bbdacb06d6c98df3382fb30643d8ff7b476b04eeff7059c5c0afa7e67e01c72d6fcf19eb684a2cce7c2838f7d2eb0e37d871a5dc6eff11be1297b97b43eafc0ad1be67a3e024b829a2f7ecf59979c9ebf01871093d6ab808b087c05aebef3fa5e1f9463cca817a19f7c2382fd6ae6e035fe8972ea8af60fce4fd126c1be05ee45b0a33edef9b99fe9233888c0e8471f45e04e39f441eb8579f34904fb737016817be5d006cda701571118f5f2a308feabcac964b56f0b874604fb0b702782bd055b11f835d889c003181fcea35f434a63d17ae23d43fe8b311fa18870fe50387622d8310fd188c0a867b422b0030f2230815dee8bf6e71e180585fd13181fec019c44e05e3985797e508f5844b0e33d6215c1de2a4ffee87f42fea917c13f2be75cb4be1e6c44f0e7999dce27617f262b029f2be738d76b033c88c09887e9f424c4ff0cf679acdaafd8bf2996b6eafd906f2a22d88f8573536cd579473fe54e047feccbdc8bc0789f6cf2bc1f08f5cd5684f351b9388d47c8370ff9dbbec07b6527821df323eb61ee3fecc71c45b0a3bf323ed8b1cff2280217e592aade0ff9974604c6fe2aad088c7c4b2702635f172b0263dfa21d75de6ec1680030e6a1e0833ff64ba922f0117814c11ff35ddb3ad79ff1f7ae1a1198660e55e7b782ad0876bc771d44b0639eab13c18ef9c578eb7e477f4fd126c17f04a36161d7f849043bf2ab5904bbfa232130f2a9f884b7b1efeb2852fe6ffabfbe4c1c3971e6c295473ebacb978ff8984ff81dbfe7533ee30ffc913f7df3fede77f2fccce77cc1977cc55ff82b5ff30ddff2aa7affc3b7f2435ee3757ec48f273de1a7fc8c9ff30bae4b7c3778935ff22bdee26d7ecd6f788777798ff7797589ef01bfe5436eb8e58efbe9c6862d0fecf86069dc7df61c88892852a24c457c69c91d68a4233aa6137a47efe994cee8037da44ff479e91d8e68e40d3aa70bbaa42bfa425ff990aee966596e887d4babf490d6786b8ab94ed777d50cb157e9113da627f494b45e77bc85fa4ef9edd1737a411bb43955fcce3746dc97f48ab6689b5e4f353cfadbb2e4be23bda11ddaa5bd29eaeabff7d914779f0ee82d1dfed8971a6aa9a39ecc54e9e6077137c8d2406efa6f79e34777e05bf214c84b65bff3fde3e7953f0139e9d686</data>
+    </image>
+    <image>
+        <name>image6</name>
+        <data format="XPM.GZ" length="563">789c8590cd0ac2301084ef798aa5b915b12a050be223081e05f1b0f9430fbd683d88f8ee6636d616dbe24c7ff826dd6cba454e87fd8ef242dd1a6e2e96ec99af94bb7b5d3f8ea7ed5365cb8ae2151fd94c658e2ce98508185aac4aa0059a350c3440bb82812ce860a006fa1206ce05030cf4c02092d58152aad974629dd2d8a42fab2565e74521bd1c4b6a521adba4d4f452e9fe9306ffbdbbf4538c8a2e6d8b659b3fdf4eec3b7186e179c7ff6d7c0ee3339b98ef207d6dd41be25a9e2b</data>
+    </image>
+    <image>
+        <name>image7</name>
+        <data format="XPM.GZ" length="2913">789c8d95c76e23471040effa0a4275138c5a721239307c500eab1ca860f8d093947396e17f77d56b8a2703de794a4f55d333dd5d5dfc31d73bd9ddeacdfd98797e092f9775afbe084fbdb9e6f5f6f6f3cfbffef87b667630eaf9579af592d9df666675dcab7bd2e77297c5a9c778860f1cbcc01387fc9f7866c4fce3a967c4fb78eee05f7861c4f8ced40beedfc0870ebe8f8f1cf2dff1ca28896f4dbdc297f1da217f80370ef16dbc7588dfbb0fb888afe2a9831fe19983bfe0b9839fe185c37807f8d0e0fde468e2e580f7d7137ce4e08778e9e0a77870f025bc7118afc15b076ff1cec153f764e0703fef937011173c7770d62f191a713e393e72f0573c38e4530f49e5e009de1871fdd9efa47388b33e29175ee2459aa7f17ee69bb68e7b50f7acc8f22caedf2e5e3b8c4fbd65ad83bfb9b31dcc57d8df7c68c4f93c4f9d7a920b7ce4e0ac7fdee55d11efbf742f12077fc07387f156f0d2214e7d16b583b35e4563c4f9f3fca273f05bf761eae04f78e6e07b78e9e09f7870f00fbc32623d50efc3dac1aff1c6c1d7f0d6e2d1a95fca2fce977ab7c5c84671be155e38f81d5e3a38eb3daa8ce8eb78ebe037ee65dfc1034e81e35778e2e0d477991ab11e1ff1cac1e907655b36d103f55b76651de2fda389b721ae27e72bf41d9cfde238c5e7d778eab09ff49fc0457c883746ac2ffa61357070fa0fe5cff303f3ab5287f8269e3938fb5be50ecefe556c204e7d55c1e1f9e38957139fc7fd8af5cffa55b583531f55e3e0d46fd53adcbf30f5587fe778e7904fffa35db25ecafad703877cfa7d9d38c4e9a775ea10e7bc723ce37ca9df3a7770eab11e39e4f3f9500787f5633f6a2ee2f49fba71b89ff35a770ecee707ed3cbe2ffda1c91cc6a33f36b9439cfa6d38908cdfe11c10e2ac4f533a38f5db70311ee781761bd783fd6d13877cf687f615f79ff5a53dc5f5e0bcb78583535fedd0c1791f8e4fecb7f4f3b674f0f8fce0e0d41bdb1bfb2df36d6b07673ddbc6c1392f2d97fb1ee7bfed1ce29cdfaeefe0f40bda779c1ffd9df615df9ffedd8d1c9ccf1b868be785f3d871c5e7fd3f314fc5f9afb8fd3f68a5717ea2b536df79668dc5b88ffb5bcbab26791eabb4b3ef73bdd04bbdd26bbd31bfb56fff1926799ddee9bd3ee8a33ee9b3bee8abbee9bbfdfda19ffaa5f393bc5a1774519774d9222bbaaa6bbaae1bfa5337754bb7754777a7797bbaaf077aa847161febb17162bf4ff54cfbf6d7609217ec79679a686a4fc86c8cdcc62c2c6fa8232d755f54e37ab69637f6a78be88b04bd944a6a69a495cede616cd1b88f9d9c6b261772a963b9b231ae24c8b5dc98ddca9dfd3cffced37bb9970779b4ec27cb7a961779953779970ff9942f99d7dbc9780bb2284bf6bfd6465d9615599535465f970df9a903d9fc7e3fd9926d5bb363d9b1d176654ff62deb400eedbe2319eb7cac5339961369f4504ee54cfaba6ca30f2491545725931bc927cf155b8f0b296c47ee652823298306ebcff694c238b61d0cd33aa8633558ebb45597e3d0d8ae4e2be3bbae7eb5fe7e21ef9fdf67fe054ff99861</data>
+    </image>
+    <image>
+        <name>image8</name>
+        <data format="XPM.GZ" length="646">789c6dd2c10ac2300c00d07bbf2234b7229d1ddec44f503c0ae2a154410f53d0ed20e2bf6bdb656dd6861dd23d9a66591b0587fd1654235ebded6f0edcd53e419d87ae7b1f4f9b8f906d0bfe012317426a70b07bdc2f3ec77f8ed6b89559061a0343d06a124cc105596482585094bc0ae599b04646c9018926491b2205e140c485cace25755c175d0a967b622ff900b8cc9c7d29af594ea722d589167f813aa852ba07d94b9dce296e883fe7bb163f23896753</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>g_xview</sender>
+        <signal>released()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ChangeView()</slot>
+    </connection>
+    <connection>
+        <sender>g_yview</sender>
+        <signal>released()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ChangeView()</slot>
+    </connection>
+    <connection>
+        <sender>g_zview</sender>
+        <signal>released()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ChangeView()</slot>
+    </connection>
+    <connection>
+        <sender>g_SliderX</sender>
+        <signal>sliderMoved(int)</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ChangeSliceX(int)</slot>
+    </connection>
+    <connection>
+        <sender>g_drawimagename</sender>
+        <signal>released()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>DrawImageName()</slot>
+    </connection>
+    <connection>
+        <sender>g_drawimageinfo</sender>
+        <signal>released()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>DrawImageInfo()</slot>
+    </connection>
+    <connection>
+        <sender>g_drawposition</sender>
+        <signal>released()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>DrawPosition()</slot>
+    </connection>
+    <connection>
+        <sender>g_drawintensity</sender>
+        <signal>released()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>DrawIntensity()</slot>
+    </connection>
+    <connection>
+        <sender>g_viewcolumn</sender>
+        <signal>released()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ViewAllImages()</slot>
+    </connection>
+    <connection>
+        <sender>g_nbcolumn</sender>
+        <signal>returnPressed()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ViewAllImages()</slot>
+    </connection>
+    <connection>
+        <sender>Slider2</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ChangeAlpha(int)</slot>
+    </connection>
+    <connection>
+        <sender>g_viewall</sender>
+        <signal>released()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ViewAllImages()</slot>
+    </connection>
+    <connection>
+        <sender>g_reset</sender>
+        <signal>pressed()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ResetView()</slot>
+    </connection>
+    <connection>
+        <sender>g_loadimg</sender>
+        <signal>pressed()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>LoadImg()</slot>
+    </connection>
+    <connection>
+        <sender>g_loadoverlay</sender>
+        <signal>pressed()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>LoadOverlay()</slot>
+    </connection>
+    <connection>
+        <sender>g_combine</sender>
+        <signal>pressed()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>Combine()</slot>
+    </connection>
+    <connection>
+        <sender>g_help</sender>
+        <signal>pressed()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>Help()</slot>
+    </connection>
+    <connection>
+        <sender>g_minslider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ChangeMin(int)</slot>
+    </connection>
+    <connection>
+        <sender>g_maxslider</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ChangeMax(int)</slot>
+    </connection>
+    <connection>
+        <sender>g_alpha</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ChangeImageAlpha(int)</slot>
+    </connection>
+    <connection>
+        <sender>g_loadimg2</sender>
+        <signal>pressed()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>LoadImg2()</slot>
+    </connection>
+    <connection>
+        <sender>g_blendingmode</sender>
+        <signal>pressed()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>SetBlendingMode()</slot>
+    </connection>
+    <connection>
+        <sender>g_overlaymin</sender>
+        <signal>returnPressed()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ChangeOverlayMinMax()</slot>
+    </connection>
+    <connection>
+        <sender>g_overlaymax</sender>
+        <signal>returnPressed()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ChangeOverlayMinMax()</slot>
+    </connection>
+    <connection>
+        <sender>g_overlayzero</sender>
+        <signal>released()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ChangeOverlayZero()</slot>
+    </connection>
+    <connection>
+        <sender>g_screenshot</sender>
+        <signal>pressed()</signal>
+        <receiver>MriWatcherGUI</receiver>
+        <slot>ScreenShot()</slot>
+    </connection>
+    <slot access="public">ChangeAlpha(int)</slot>
+    <slot access="public">ChangeImageAlpha(int)</slot>
+    <slot access="public">ChangeMax(int)</slot>
+    <slot access="public">ChangeMin(int)</slot>
+    <slot access="public">ChangeOverlayMinMax()</slot>
+    <slot access="public">ChangeOverlayZero()</slot>
+    <slot access="public">ChangeRotation(const QString&amp;)</slot>
+    <slot access="public">ChangeSliceX(int)</slot>
+    <slot access="public">ChangeSliceY(int)</slot>
+    <slot access="public">ChangeSliceZ(int)</slot>
+    <slot access="public">ChangeView()</slot>
+    <slot access="public">Combine()</slot>
+    <slot access="public">Compute()</slot>
+    <slot access="public">DrawImageInfo()</slot>
+    <slot access="public">DrawImageName()</slot>
+    <slot access="public">DrawIntensity()</slot>
+    <slot access="public">DrawPosition()</slot>
+    <slot access="public">Help()</slot>
+    <slot access="public">ImageFrameClicked(int)</slot>
+    <slot access="public">LoadFile( const QString &amp; )</slot>
+    <slot access="public">LoadImg()</slot>
+    <slot access="public">LoadImg2()</slot>
+    <slot access="public">LoadOverlay()</slot>
+    <slot access="public">LoadSeg()</slot>
+    <slot access="public">LoadSeg2()</slot>
+    <slot access="public">Next()</slot>
+    <slot access="public">ResetView()</slot>
+    <slot access="public">Rotate()</slot>
+    <slot access="public">Rotate(int)</slot>
+    <slot access="public">ScreenShot()</slot>
+    <slot access="public">Sequence1()</slot>
+    <slot access="public">Sequence2()</slot>
+    <slot access="public">Sequence3()</slot>
+    <slot access="public">SetBlendingMode()</slot>
+    <slot access="public">UnSelect()</slot>
+    <slot access="public">UpdateLabelX(int)</slot>
+    <slot access="public">ViewAllImages()</slot>
+    <slot access="public">LoadOverlay(const QString&amp;)</slot>
+    <slot access="public">new_slot()</slot>
+</connections>
+</UI>
