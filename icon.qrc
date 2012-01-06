@@ -1,0 +1,22 @@
+<RCC>
+  <qresource prefix="buttons">
+    <file>images/buttons/help.png</file>
+    <file>images/buttons/combine.gif</file>
+    <file>images/buttons/screenshot4.gif</file>
+    <file>images/buttons/screenshot3.jpg</file>
+    <file>images/buttons/screenshot2.png</file>
+    <file>images/buttons/screenshot.png</file>
+    <file>images/buttons/resetview2.png</file>
+    <file>images/buttons/resetview3.png</file>
+    <file>images/buttons/resetview4.png</file>
+    <file>images/buttons/resetview.jpg</file>
+    <file>images/buttons/loadimg.png</file>
+    <file>images/buttons/loadimg2.SVG</file>
+    <file>images/buttons/loadoverlay.gif</file>
+  </qresource>
+  <qresource prefix="window_icon">
+    <file>images/watcher_icon3.png</file>
+    <file>images/watcher_icon2.png</file>
+    <file>images/watcher_icon.png</file>
+  </qresource>
+</RCC>
