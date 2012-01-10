@@ -30,9 +30,9 @@ public:
     explicit MriWatcherGUI(QWidget *parent = 0);
     ~MriWatcherGUI();
     void ScreenShot(QString);
-    void LoadOverlay(const QString&);
     void resizeEvent(QResizeEvent *);
     bool eventFilter(QObject *, QEvent *);
+    void SetViewAllImages();
 
     typedef float PixelType;
     typedef float OverlayPixelType;
@@ -46,8 +46,10 @@ public:
 
 
 public slots:
+    void LoadFile(const QString&);
     void LoadImg();
     void LoadOverlay();
+    void LoadOverlay(const QString&);
     void LoadImg2();
     void UpdateLabel();
     void ChangeView();
@@ -74,7 +76,6 @@ public slots:
 
 
 private:
-    void LoadFile(const QString&);
     void ComputeMaxColumn(int &, int &);
     void ReDraw();
     void UpdateIntensitySlider();
@@ -104,6 +105,10 @@ public:
     std::vector<ImageFrameGUI*> m_imageframelist;
     MriWatcherFrame *m_frame;
     ImageFrameLayout *m_imageframelayout;
+
+protected:
+    void dragEnterEvent(QDragEnterEvent *);
+    void dropEvent(QDropEvent *);
 
 private:
     bool m_keyalt;

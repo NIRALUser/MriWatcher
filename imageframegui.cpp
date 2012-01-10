@@ -3,6 +3,7 @@
 ImageFrameGUI::ImageFrameGUI(QWidget *parent)
 {
     setupUi(this);
+    setAcceptDrops(true);
     m_selected = false;
 }
 
@@ -33,4 +34,23 @@ void ImageFrameGUI::UnSelect()
 bool ImageFrameGUI::IsSelected()
 {
     return m_selected;
+}
+
+void ImageFrameGUI::dragEnterEvent(QDragEnterEvent *event)
+{
+ //   if (QTextDrag::canDecode(event))
+    {
+        event->accept();
+    }
+}
+
+void ImageFrameGUI::dropEvent(QDropEvent *de)
+{
+    QList<QUrl> urls;
+    urls = de->mimeData()->urls();
+    
+    for (int i = 0; i < urls.size(); ++i)
+    {
+        emit GetFiles(urls.at(i).path());
+    }
 }

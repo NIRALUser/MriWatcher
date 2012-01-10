@@ -11,6 +11,7 @@ MriWatcherGUI::MriWatcherGUI(QWidget *parent)
 {
     setupUi(this);
     installEventFilter(this);
+    setAcceptDrops(true);
     
     connect(g_loadimg, SIGNAL( clicked() ), this, SLOT( LoadImg() ));
     connect(g_loadoverlay, SIGNAL( clicked() ), this, SLOT( LoadOverlay() ));
@@ -67,6 +68,7 @@ MriWatcherGUI::MriWatcherGUI(QWidget *parent)
     m_frame = new MriWatcherFrame(g_scrollArea);
     
     connect(m_frame, SIGNAL( UnSelectAll() ), this, SLOT( UnSelectAll() ));
+    connect(m_frame, SIGNAL( GetFiles(const QString&) ), this, SLOT( LoadFile(const QString&) ));
  //   m_imageframelayout = new ImageFrameLayout();
  //   QBoxLayout* gm = new QVBoxLayout(m_frame);
     m_imageframelayout = new ImageFrameLayout();
@@ -77,6 +79,8 @@ MriWatcherGUI::MriWatcherGUI(QWidget *parent)
     g_scrollArea->setWidget(m_frame);
     m_frame->setLayout(m_imageframelayout);
 
+    g_name_version->setText(QString("MriWatcher") + "  " + MriWatcher_VERSION);
+    g_tips->setText("\nQuick Tips:\n- Left mouse: Move\n- Right mouse: Zoom\n- Middle mouse: Select\n- Shift + mouse: Global");
 /*
      imageLabel = new QLabel;
      imageLabel->setBackgroundRole(QPalette::Base);
@@ -98,8 +102,8 @@ void MriWatcherGUI::LoadImg(void)
     QStringList filenames = QFileDialog::getOpenFileNames(
                                 this,
                                 tr("Select one or more image files to open"),
-                                QDir::currentPath());
-   //                             tr("*.jpg *.gipl* *.raw* *.hdr *.mha *.mhd* *.nhdr* *nrrd* *nii*"));
+                                QDir::currentPath(),
+                                tr("*.jpg *.gipl* *.raw* *.hdr *.mha *.mhd* *.nhdr* *nrrd* *nii*"));
     for ( QStringList::Iterator it = filenames.begin(); it != filenames.end(); ++it)
     {
         LoadFile(*it);
@@ -131,6 +135,7 @@ void MriWatcherGUI::LoadFile(const QString& filename)
     ImageFrameGUI* m_imageframe = new ImageFrameGUI(m_frame);
 
     connect(m_imageframe->g_imageframe, SIGNAL( Clicked(int) ), this, SLOT( ImageFrameClicked() ));
+    connect(m_imageframe, SIGNAL( GetFiles(const QString&) ), this, SLOT( LoadOverlay(const QString&) ));
 
     m_imageframe->g_imageframe->SetManager(&m_imagemanager);
     m_imageframe->g_imageframe->SetSlider(g_slice_slider);
@@ -467,6 +472,7 @@ void MriWatcherGUI::ChangeIntensityMax(int percentage)
 	    m_imageframelist[i]->g_imageframe->SetIntensityMax(m_imagemax*percentage/MAX_PERCENTAGE);
 	}
     }
+    g_intensity_max_slider->setValue(percentage);
 }
 
 void MriWatcherGUI::ChangeIntensityMin(int percentage)
@@ -500,6 +506,7 @@ void MriWatcherGUI::ChangeIntensityMin(int percentage)
 	    m_imageframelist[i]->g_imageframe->SetIntensityMin(m_imagemax*percentage/MAX_PERCENTAGE);
 	}
     }
+    g_intensity_min_slider->setValue(percentage);
 }
 
 void MriWatcherGUI::ChangeImageAlpha(int value)
@@ -510,9 +517,9 @@ void MriWatcherGUI::ChangeImageAlpha(int value)
 void MriWatcherGUI::SetBlendingMode()
 {
   if (g_blending_mode->isChecked())
-    m_imagemanager.SetBlendingMode(0);
-  else
     m_imagemanager.SetBlendingMode(1);
+  else
+    m_imagemanager.SetBlendingMode(0);
 }
 
 void MriWatcherGUI::ComputeMaxColumn(int& nb_column,int& height)
@@ -579,6 +586,11 @@ void MriWatcherGUI::ReDraw()
     }
 }
 
+void MriWatcherGUI::SetViewAllImages()
+{
+    g_viewall->setChecked(true);
+    ViewOptions();
+}
 
 void MriWatcherGUI::ViewOptions()
 {
@@ -1074,4 +1086,17 @@ bool MriWatcherGUI::eventFilter(QObject* o, QEvent* e)
   return false;
 }
 
+void MriWatcherGUI::dragEnterEvent(QDragEnterEvent *event)
+{
+    event->accept();
+}
 
+void MriWatcherGUI::dropEvent(QDropEvent *de)
+{
+    QList<QUrl> urls;
+    urls = de->mimeData()->urls();
+    for (int i = 0; i < urls.size(); ++i)
+    {   
+        LoadFile(urls.at(i).path());
+    }
+}

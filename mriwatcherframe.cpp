@@ -23,7 +23,7 @@ MriWatcherFrame::MriWatcherFrame( QWidget * parent)
     : QScrollArea(parent)
 {
     setAcceptDrops(TRUE);
-      installEventFilter(this);
+    installEventFilter(this);
 }
 
 
@@ -51,6 +51,26 @@ void MriWatcherFrame::dropEvent( QDropEvent * e )
   }
 }
 */
+
+void MriWatcherFrame::dragEnterEvent(QDragEnterEvent *event)
+{
+ //   if (QTextDrag::canDecode(event))
+    {   
+        event->accept();
+    }   
+}
+
+void MriWatcherFrame::dropEvent(QDropEvent *de)
+{
+    QList<QUrl> urls;
+    urls = de->mimeData()->urls();
+        
+    for (int i = 0; i < urls.size(); ++i)
+    {   
+        emit GetFiles(urls.at(i).path());
+    }   
+}
+
 
 void MriWatcherFrame::mousePressEvent ( QMouseEvent * )
 {

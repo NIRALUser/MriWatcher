@@ -3,6 +3,7 @@
 
 #include <QFrame>
 #include <QScrollArea>
+#include <QtGui>
 //#include <qdragobject.h> 
 
 class MriWatcherFrame : public QScrollArea
@@ -17,8 +18,8 @@ signals:
     void UnSelectAll();
     
 protected:
-/*  void dragEnterEvent( QDragEnterEvent * );
-  void dropEvent( QDropEvent * );*/
+  void dragEnterEvent( QDragEnterEvent * );
+  void dropEvent( QDropEvent * );
   void mousePressEvent ( QMouseEvent * );
 
 };
