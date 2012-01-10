@@ -64,7 +64,7 @@ ELSE (WIN32)
     FIND_PATH( GLUT_INCLUDE_DIR GL/glut.h
       ${OPENGL_LIBRARY_DIR}
     )
-    SET(GLUT_glut_LIBRARY "-framework Glut" CACHE STRING "GLUT library for OSX")
+    SET(GLUT_glut_LIBRARY "-framework GLUT" CACHE STRING "GLUT library for OSX")
   ELSE (APPLE)
 
     FIND_PATH( GLUT_INCLUDE_DIR GL/glut.h
@@ -143,3 +143,4 @@ MARK_AS_ADVANCED(
   GLUT_Xmu_LIBRARY
   GLUT_Xi_LIBRARY
 )
+
