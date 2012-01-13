@@ -10,8 +10,8 @@
   Copyright (c) 2004 NeuroImaging Lab @ UNC. All rights reserved.
   See NeuroLibCopyright.txt for details.
 
-     This software is distributed WITHOUT ANY WARRANTY; without even 
-     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
 
 =========================================================================*/
@@ -20,16 +20,16 @@
 #include <qurl.h>
 
 MriWatcherFrame::MriWatcherFrame( QWidget * parent)
-    : QScrollArea(parent)
+  : QScrollArea(parent)
 {
-    setAcceptDrops(TRUE);
-    installEventFilter(this);
+  setAcceptDrops(TRUE);
+  installEventFilter(this);
 }
 
-
-MriWatcherFrame::~MriWatcherFrame( )
+MriWatcherFrame::~MriWatcherFrame()
 {
 }
+
 /*
 void MriWatcherFrame::dragEnterEvent( QDragEnterEvent *e )
 {
@@ -54,26 +54,23 @@ void MriWatcherFrame::dropEvent( QDropEvent * e )
 
 void MriWatcherFrame::dragEnterEvent(QDragEnterEvent *event)
 {
- //   if (QTextDrag::canDecode(event))
-    {   
-        event->accept();
-    }   
+  //   if (QTextDrag::canDecode(event))
+    {
+    event->accept();
+    }
 }
 
 void MriWatcherFrame::dropEvent(QDropEvent *de)
 {
-    QList<QUrl> urls;
-    urls = de->mimeData()->urls();
-        
-    for (int i = 0; i < urls.size(); ++i)
-    {   
-        emit GetFiles(urls.at(i).path());
-    }   
+  QList<QUrl> urls;
+  urls = de->mimeData()->urls();
+  for( int i = 0; i < urls.size(); ++i )
+    {
+    emit GetFiles(urls.at(i).path() );
+    }
 }
 
-
-void MriWatcherFrame::mousePressEvent ( QMouseEvent * )
+void MriWatcherFrame::mousePressEvent( QMouseEvent * )
 {
   emit UnSelectAll();
 }
-

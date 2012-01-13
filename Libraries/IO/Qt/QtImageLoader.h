@@ -5,31 +5,30 @@
 #include "ItkFastIO.h"
 #include <qfiledialog.h>
 
-template< class TPixel >
+template <class TPixel>
 class QtImageLoader
 {
 
-  public:
-	typedef TPixel PixelType;
-	typedef itk::Image<PixelType,3> ImageType;
-  	typedef itk::ImageFileReader<ImageType>   ReaderType;
-  	typedef typename ImageType::Pointer ImagePointer;
+public:
+  typedef TPixel                          PixelType;
+  typedef itk::Image<PixelType, 3>        ImageType;
+  typedef itk::ImageFileReader<ImageType> ReaderType;
+  typedef typename ImageType::Pointer     ImagePointer;
 
-	ImagePointer GetOutput( void );
-	QString GetFileName();
-	QString GetFilePath();
+  ImagePointer GetOutput( void );
 
-	QtImageLoader();
-	~QtImageLoader(); 
+  QString GetFileName();
 
-  protected:
-	ImagePointer m_Image;
-	QString m_filename;
+  QString GetFilePath();
+
+  QtImageLoader();
+  ~QtImageLoader();
+protected:
+  ImagePointer m_Image;
+  QString      m_filename;
 
 };
 
-
 #include "QtImageLoader.txx"
-
 
 #endif

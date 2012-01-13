@@ -8,13 +8,12 @@
   Copyright (c) 2003 Insight Consortium. All rights reserved.
   See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
 
-     This software is distributed WITHOUT ANY WARRANTY; without even 
-     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
+     This software is distributed WITHOUT ANY WARRANTY; without even
+     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
 #ifndef __NeuroLibOpenGLSliceTexture_h_
 #define __NeuroLibOpenGLSliceTexture_h_
-
 
 #include "itkNumericTraitsRGBAPixel.h"
 #include "itkImage.h"
@@ -26,15 +25,16 @@
 /**
  * \class OpenGLSliceTexture
  * \brief This class is used to turn a 2D ITK image of (arbitrary) type
- * into a GL texture.  
+ * into a GL texture.
  *
- * The calls to Update will make sure that the texture is up to date.  
+ * The calls to Update will make sure that the texture is up to date.
  */
-template<class TPixel> class NeuroLibOpenGLSliceTexture 
+template <class TPixel>
+class NeuroLibOpenGLSliceTexture
 {
 public:
   // Image typedefs
-  typedef itk::Image<TPixel,2> ImageType;
+  typedef itk::Image<TPixel, 2>                 ImageType;
   typedef typename itk::SmartPointer<ImageType> ImagePointer;
 
   /** Constructor, initializes the texture object */
@@ -42,7 +42,7 @@ public:
 
   /** Destructor, deallocates texture memory */
   virtual ~NeuroLibOpenGLSliceTexture();
-  
+
   /** Pass in a pointer to a 2D image */
   void SetImage(ImagePointer inImage);
 
@@ -50,7 +50,7 @@ public:
 //  irisGetMacro(TextureSize,Vector2ui);
 
   /** Get the GL texture number automatically allocated by this object */
-  //irisGetMacro(TextureIndex,int);
+  // irisGetMacro(TextureIndex,int);
 
   /** Set the number of components used in call to glTextureImage */
   void SetGlComponents(GLuint GlComponents)
@@ -87,13 +87,13 @@ public:
   void DrawTransparent(unsigned char alpha);
 
 private:
-  
+
   // Filter typedefs
-  typedef itk::ConstantPadImageFilter<ImageType,ImageType> FilterType;
-  typedef typename itk::SmartPointer<FilterType> FilterPointer;
+  typedef itk::ConstantPadImageFilter<ImageType, ImageType> FilterType;
+  typedef typename itk::SmartPointer<FilterType>            FilterPointer;
 
   // The dimensions of the texture as stored in memory
-   unsigned int m_TextureSize[2];
+  unsigned int m_TextureSize[2];
 
   // The pointer to the image from which the texture is computed
   ImagePointer m_Image;
@@ -120,8 +120,8 @@ private:
   GLenum m_GlType;
 };
 
-//#ifndef ITK_MANUAL_INSTANTIATION
+// #ifndef ITK_MANUAL_INSTANTIATION
 #include "NeuroLibOpenGLSliceTexture.txx"
-//#endif
+// #endif
 
 #endif // __OpenGLSliceTexture_h_

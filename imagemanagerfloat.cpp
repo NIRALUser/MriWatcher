@@ -1,9 +1,9 @@
 #ifndef _ImageManagerFloat_TXX
 #define _ImageManagerFloat_TXX
 
-//#include "ImageManagerFloat.h"
+// #include "ImageManagerFloat.h"
 
-template< class TPixelImage, class TPixelOverlay >
+template <class TPixelImage, class TPixelOverlay>
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::ImageManagerFloat()
 {
@@ -17,102 +17,113 @@ ImageManagerFloat<TPixelImage, TPixelOverlay>
   m_istargetseglabel = false;
 }
 
-template< class TPixelImage, class TPixelOverlay >
+template <class TPixelImage, class TPixelOverlay>
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::~ImageManagerFloat()
 {
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::SetSourceImage(ImageType* image)
 {
   m_SourceImage = image;
   m_IsSourceImage = true;
-    for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-        (*it)->SetInputImage(image);
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
+    {
+    (*it)->SetInputImage(image);
+    }
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::SetTargetImage(ImageType* image)
 {
   m_TargetImage = image;
   m_IsTargetImage = true;
-  for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-        (*it)->SetInputImage2(image);
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
+    {
+    (*it)->SetInputImage2(image);
+    }
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::SetSourceOverlay(OverlayType* image)
 {
   m_SourceOverlay = image;
   m_IsSourceOverlay = true;
-  for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-        (*it)->SetInputOverlay(image);
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
+    {
+    (*it)->SetInputOverlay(image);
+    }
 }
 
-
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::SetTargetOverlay(OverlayType* image)
 {
   m_TargetOverlay = image;
   m_IsTargetOverlay = true;
-  for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-        (*it)->SetInputOverlay2(image);
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
+    {
+    (*it)->SetInputOverlay2(image);
+    }
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::UnSetSourceImage()
 {
   m_IsSourceImage = false;
-  for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-        (*it)->UnSetInputImage();
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
+    {
+    (*it)->UnSetInputImage();
+    }
 }
 
-
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::UnSetSourceOverlay()
 {
   m_IsSourceOverlay = false;
-  for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-        (*it)->UnSetInputOverlay();
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
+    {
+    (*it)->UnSetInputOverlay();
+    }
 }
 
-
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::UnSetTargetImage()
 {
   m_IsTargetImage = false;
-  for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-        (*it)->UnSetInputImage2();
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
+    {
+    (*it)->UnSetInputImage2();
+    }
 }
 
-
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::UnSetTargetOverlay()
 {
   m_IsTargetOverlay = false;
-  for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-        (*it)->UnSetInputOverlay2();
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
+    {
+    (*it)->UnSetInputOverlay2();
+    }
 }
 
-
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::AddWindow2D(QtWindow2DFloat* window2D)
@@ -120,32 +131,31 @@ ImageManagerFloat<TPixelImage, TPixelOverlay>
   m_window2Dlist.push_back(window2D);
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::DelWindow2D(QtWindow2DFloat* window2D)
 {
-  std::vector<QtWindow2DFloat*>::iterator it = m_window2Dlist.begin();
-  for (int i=0;i<(int)m_window2Dlist.size();i++)
-  {
-    if (m_window2Dlist[i] == window2D)
+  std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin();
+  for( int i = 0; i < (int)m_window2Dlist.size(); i++ )
+    {
+    if( m_window2Dlist[i] == window2D )
+      {
       m_window2Dlist.erase(it);
+      }
     it++;
-  }
+    }
 }
 
-
-
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::Update()
 {
 
-
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::ChangeSliceX(int value)
@@ -155,140 +165,172 @@ ImageManagerFloat<TPixelImage, TPixelOverlay>
     if ((*it)->GetId() == 0)
       (*it)->ChangeSlice(value);
   }*/
-  SetCrosshair(m_crosshairx,m_crosshairy, value);
+  SetCrosshair(m_crosshairx, m_crosshairy, value);
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::ChangeSliceY(int value)
 {
- /*for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-    {
-    if ((*it)->GetId() == 1)
-      (*it)->ChangeSlice(value);
-  }*/
-  SetCrosshair(m_crosshairx,value, m_crosshairz);
+  /*for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
+     {
+     if ((*it)->GetId() == 1)
+       (*it)->ChangeSlice(value);
+   }*/
+  SetCrosshair(m_crosshairx, value, m_crosshairz);
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::ChangeSliceZ(int value)
 {
- /*for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-    {
-    if ((*it)->GetId() == 2)
-      (*it)->ChangeSlice(value);
-  }*/
-   SetCrosshair(value,m_crosshairy, m_crosshairz);
+  /*for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
+     {
+     if ((*it)->GetId() == 2)
+       (*it)->ChangeSlice(value);
+   }*/
+  SetCrosshair(value, m_crosshairy, m_crosshairz);
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::ChangeAlpha(int value)
 {
- m_alpha = value;
- for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
+  m_alpha = value;
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
     {
-      (*it)->ChangeAlpha(value);
+    (*it)->ChangeAlpha(value);
 
-  }
+    }
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::ChangeLabelOverlay(int value)
 {
- for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
     {
-      (*it)->ChangeLabelOverlay(value);
-  }
+    (*it)->ChangeLabelOverlay(value);
+    }
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
-::SetCrosshair(unsigned int x,unsigned int y,unsigned int z)
+::SetCrosshair(unsigned int x, unsigned int y, unsigned int z)
 {
-  SizeType m_imagesize=GetImageSize();
-  if ((m_imagesize[0] == 0) && (m_imagesize[1] == 0) && (m_imagesize[2] == 0))
+  SizeType m_imagesize = GetImageSize();
+
+  if( (m_imagesize[0] == 0) && (m_imagesize[1] == 0) && (m_imagesize[2] == 0) )
+    {
     return;
+    }
 
-  if (x>=m_imagesize[0])
-    x = m_imagesize[0]-1;
+  if( x >= m_imagesize[0] )
+    {
+    x = m_imagesize[0] - 1;
+    }
 
-  if (y>=m_imagesize[1])
-    y = m_imagesize[1]-1;
+  if( y >= m_imagesize[1] )
+    {
+    y = m_imagesize[1] - 1;
+    }
 
-  if (z>=m_imagesize[2])
-    z = m_imagesize[2]-1;
+  if( z >= m_imagesize[2] )
+    {
+    z = m_imagesize[2] - 1;
+    }
 
-  if (x<0) x = 0;
-  if (y<0) y = 0;
-  if (z<0) z = 0;
-  
-  if (x>=m_imagesize[0]) x = m_imagesize[0]-1;
-  if (y>=m_imagesize[1]) y = m_imagesize[1]-1;
-  if (z>=m_imagesize[2]) z = m_imagesize[2]-1;
+  if( x < 0 )
+    {
+    x = 0;
+    }
+  if( y < 0 )
+    {
+    y = 0;
+    }
+  if( z < 0 )
+    {
+    z = 0;
+    }
+
+  if( x >= m_imagesize[0] )
+    {
+    x = m_imagesize[0] - 1;
+    }
+  if( y >= m_imagesize[1] )
+    {
+    y = m_imagesize[1] - 1;
+    }
+  if( z >= m_imagesize[2] )
+    {
+    z = m_imagesize[2] - 1;
+    }
 
   m_crosshairx = x;
   m_crosshairy = y;
   m_crosshairz = z;
 
-
-  //Update Label
+  // Update Label
   itk::Index<3> m_index;
   m_index[0] = m_crosshairx;
   m_index[1] = m_crosshairy;
   m_index[2] = m_crosshairz;
 
-  float m_sourcegrayvalue=-1;
-  float m_sourcesegvalue=-1; 
-  float m_targetgrayvalue=-1;
-  float m_targetsegvalue=-1; 
+  float m_sourcegrayvalue = -1;
+  float m_sourcesegvalue = -1;
+  float m_targetgrayvalue = -1;
+  float m_targetsegvalue = -1;
 
-  if (m_IsSourceImage)
+  if( m_IsSourceImage )
+    {
     m_sourcegrayvalue = m_SourceImage->GetPixel(m_index);
+    }
 
-  if (m_IsSourceOverlay)
+  if( m_IsSourceOverlay )
+    {
     m_sourcesegvalue = m_SourceOverlay->GetPixel(m_index);
+    }
 
-  if (m_IsTargetImage)
+  if( m_IsTargetImage )
+    {
     m_targetgrayvalue = m_TargetImage->GetPixel(m_index);
+    }
 
-  if (m_IsTargetOverlay)
+  if( m_IsTargetOverlay )
+    {
     m_targetsegvalue = m_TargetOverlay->GetPixel(m_index);
-
- for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
+    }
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
     {
-    if ((*it)->GetId() == 0)
-    {
-      (*it)->SetCrosshair(x,y);
+    if( (*it)->GetId() == 0 )
+      {
+      (*it)->SetCrosshair(x, y);
       (*it)->ChangeSlice(z);
-    }
-    if ((*it)->GetId() == 1)
-    {
-      (*it)->SetCrosshair(x,z);
+      }
+    if( (*it)->GetId() == 1 )
+      {
+      (*it)->SetCrosshair(x, z);
       (*it)->ChangeSlice(y);
-    }
-    if ((*it)->GetId() == 2)
-    {
-      (*it)->SetCrosshair(y,z);
+      }
+    if( (*it)->GetId() == 2 )
+      {
+      (*it)->SetCrosshair(y, z);
       (*it)->ChangeSlice(x);
+      }
     }
-  }
 
-
-  UpdateLabel(m_sourcegrayvalue,m_sourcesegvalue,m_targetgrayvalue,m_targetsegvalue);
+  UpdateLabel(m_sourcegrayvalue, m_sourcesegvalue, m_targetgrayvalue, m_targetsegvalue);
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
-::GetCrosshair(int *x,int* y, int* z)
+::GetCrosshair(int *x, int* y, int* z)
 {
   *x = m_crosshairx;
   *y = m_crosshairy;
@@ -296,110 +338,111 @@ ImageManagerFloat<TPixelImage, TPixelOverlay>
 
 }
 
-template< class TPixelImage, class TPixelOverlay>
-void 
+template <class TPixelImage, class TPixelOverlay>
+void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::SetZoomFactor(float zoom)
 {
   m_zoom = zoom;
-  for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-  {
-   (*it)->SetZoomFactor(m_zoom);
-  }
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
+    {
+    (*it)->SetZoomFactor(m_zoom);
+    }
 }
-  
-template< class TPixelImage, class TPixelOverlay>
-float 
+
+template <class TPixelImage, class TPixelOverlay>
+float
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::GetZoomFactor()
 {
   return m_zoom;
 }
 
-
-
-template< class TPixelImage, class TPixelOverlay>
-void 
+template <class TPixelImage, class TPixelOverlay>
+void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
-::SetViewPosition(float posx,float posy)
+::SetViewPosition(float posx, float posy)
 {
-  for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-  {
-   (*it)->SetViewPosition(posx,posy);
-  }
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
+    {
+    (*it)->SetViewPosition(posx, posy);
+    }
 }
 
-template< class TPixelImage, class TPixelOverlay>
-void 
+template <class TPixelImage, class TPixelOverlay>
+void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::SetIntensityMin(int value)
 {
-  for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-  {
-   (*it)->SetIntensityMin(value);
-  }
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
+    {
+    (*it)->SetIntensityMin(value);
+    }
 }
 
-template< class TPixelImage, class TPixelOverlay>
-void 
+template <class TPixelImage, class TPixelOverlay>
+void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::SetIntensityMax(int value)
 {
-  for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-  {
-   (*it)->SetIntensityMax(value);
-  }
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
+    {
+    (*it)->SetIntensityMax(value);
+    }
 }
 
-
-template< class TPixelImage, class TPixelOverlay>
-void 
+template <class TPixelImage, class TPixelOverlay>
+void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::SetBlendingMode(int mode)
 {
-  for(std::vector<QtWindow2DFloat*>::iterator it=m_window2Dlist.begin();it!=m_window2Dlist.end();++it)
-  {
-   (*it)->SetBlendingMode(mode);
-  }
+  for( std::vector<QtWindow2DFloat *>::iterator it = m_window2Dlist.begin(); it != m_window2Dlist.end(); ++it )
+    {
+    (*it)->SetBlendingMode(mode);
+    }
 }
 
-
-
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::UpdateCrosshair()
 {
-  SetCrosshair(m_crosshairx,m_crosshairy,m_crosshairz);  
+  SetCrosshair(m_crosshairx, m_crosshairy, m_crosshairz);
 }
 
-
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 typename ImageManagerFloat<TPixelImage, TPixelOverlay>::SizeType
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::GetImageSize()
 {
-  if (m_IsSourceImage)
+  if( m_IsSourceImage )
+    {
     return m_SourceImage->GetLargestPossibleRegion().GetSize();
+    }
 
-  if (m_IsSourceOverlay)
+  if( m_IsSourceOverlay )
+    {
     return m_SourceOverlay->GetLargestPossibleRegion().GetSize();
+    }
 
-  if (m_IsTargetImage)
+  if( m_IsTargetImage )
+    {
     return m_TargetImage->GetLargestPossibleRegion().GetSize();
+    }
 
-  if (m_IsTargetOverlay)
+  if( m_IsTargetOverlay )
+    {
     return m_TargetOverlay->GetLargestPossibleRegion().GetSize();
+    }
 
   itk::Size<3> m_size;
   m_size[0] = 0;
-  m_size[1] = 0;  
+  m_size[1] = 0;
   m_size[2] = 0;
   return m_size;
 }
 
-
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 typename ImageManagerFloat<TPixelImage, TPixelOverlay>::SpacingType
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::GetImageSpacing()
@@ -407,39 +450,39 @@ ImageManagerFloat<TPixelImage, TPixelOverlay>
   return m_SourceImage->GetSpacing();
 }
 
-template< class TPixelImage, class TPixelOverlay>
-typename ImageManagerFloat<TPixelImage, TPixelOverlay>::ImagePointer 
+template <class TPixelImage, class TPixelOverlay>
+typename ImageManagerFloat<TPixelImage, TPixelOverlay>::ImagePointer
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::GetSourceImage()
 {
   return m_SourceImage;
 }
 
-template< class TPixelImage, class TPixelOverlay>
-typename ImageManagerFloat<TPixelImage, TPixelOverlay>::ImagePointer 
+template <class TPixelImage, class TPixelOverlay>
+typename ImageManagerFloat<TPixelImage, TPixelOverlay>::ImagePointer
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::GetTargetImage()
 {
- return m_TargetImage;
+  return m_TargetImage;
 }
 
-template< class TPixelImage, class TPixelOverlay>
-typename ImageManagerFloat<TPixelImage, TPixelOverlay>::OverlayPointer 
+template <class TPixelImage, class TPixelOverlay>
+typename ImageManagerFloat<TPixelImage, TPixelOverlay>::OverlayPointer
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::GetSourceOverlay()
 {
   return m_SourceOverlay;
 }
 
-template< class TPixelImage, class TPixelOverlay>
-typename ImageManagerFloat<TPixelImage, TPixelOverlay>::OverlayPointer 
+template <class TPixelImage, class TPixelOverlay>
+typename ImageManagerFloat<TPixelImage, TPixelOverlay>::OverlayPointer
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::GetTargetOverlay()
 {
   return m_IsTargetOverlay;
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::SetSourceGrayLabel(QLabel* graylabel)
@@ -448,7 +491,7 @@ ImageManagerFloat<TPixelImage, TPixelOverlay>
   m_issourcegraylabel = true;
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::SetSourceSegLabel(QLabel* seglabel)
@@ -457,7 +500,7 @@ ImageManagerFloat<TPixelImage, TPixelOverlay>
   m_issourceseglabel = true;
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::SetTargetGrayLabel(QLabel* graylabel)
@@ -466,7 +509,7 @@ ImageManagerFloat<TPixelImage, TPixelOverlay>
   m_istargetgraylabel = true;
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
 ::SetTargetSegLabel(QLabel* seglabel)
@@ -475,42 +518,58 @@ ImageManagerFloat<TPixelImage, TPixelOverlay>
   m_istargetseglabel = true;
 }
 
-template< class TPixelImage, class TPixelOverlay>
+template <class TPixelImage, class TPixelOverlay>
 void
 ImageManagerFloat<TPixelImage, TPixelOverlay>
-::UpdateLabel(float sourcegrayvalue,float sourcesegvalue,float targetgrayvalue,float targetsegvalue)
+::UpdateLabel(float sourcegrayvalue, float sourcesegvalue, float targetgrayvalue, float targetsegvalue)
 {
-  if (m_issourcegraylabel)
-  {
-    if (sourcegrayvalue != -1)
-      m_sourcegraylabel->setText(QString("%1").arg(sourcegrayvalue));
+  if( m_issourcegraylabel )
+    {
+    if( sourcegrayvalue != -1 )
+      {
+      m_sourcegraylabel->setText(QString("%1").arg(sourcegrayvalue) );
+      }
     else
+      {
       m_sourcegraylabel->setText("Na");
-  }
+      }
+    }
 
-  if (m_issourceseglabel)
-  {
-    if (sourcesegvalue != -1)
-      m_sourceseglabel->setText(QString("%1").arg(sourcesegvalue));
+  if( m_issourceseglabel )
+    {
+    if( sourcesegvalue != -1 )
+      {
+      m_sourceseglabel->setText(QString("%1").arg(sourcesegvalue) );
+      }
     else
+      {
       m_sourceseglabel->setText("Na");
-  }
+      }
+    }
 
-  if (m_istargetgraylabel)
-  {
-    if (targetgrayvalue != -1)
-      m_targetgraylabel->setText(QString("%1").arg(targetgrayvalue));
+  if( m_istargetgraylabel )
+    {
+    if( targetgrayvalue != -1 )
+      {
+      m_targetgraylabel->setText(QString("%1").arg(targetgrayvalue) );
+      }
     else
+      {
       m_targetgraylabel->setText("Na");
-  }
+      }
+    }
 
-  if (m_istargetseglabel)
-  {
-    if (targetsegvalue != -1)
-      m_targetseglabel->setText(QString("%1").arg(targetsegvalue));
+  if( m_istargetseglabel )
+    {
+    if( targetsegvalue != -1 )
+      {
+      m_targetseglabel->setText(QString("%1").arg(targetsegvalue) );
+      }
     else
+      {
       m_targetseglabel->setText("Na");
-  }
+      }
+    }
 }
 
 #endif
