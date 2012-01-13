@@ -245,19 +245,6 @@ ImageManagerFloat<TPixelImage, TPixelOverlay>
     z = m_imagesize[2] - 1;
     }
 
-  if( x < 0 )
-    {
-    x = 0;
-    }
-  if( y < 0 )
-    {
-    y = 0;
-    }
-  if( z < 0 )
-    {
-    z = 0;
-    }
-
   if( x >= m_imagesize[0] )
     {
     x = m_imagesize[0] - 1;
