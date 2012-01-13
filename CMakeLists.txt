@@ -1,45 +1,45 @@
-PROJECT(MRIWatcher)
+project(MRIWatcher)
 
 cmake_minimum_required(VERSION 2.6)
 
 ###### FIND ITK PACKAGE #########
-FIND_PACKAGE(ITK)
+find_package(ITK)
 
-IF(ITK_FOUND)
-  INCLUDE(${USE_ITK_FILE})
-ELSE(ITK_FOUND)
-  MESSAGE("ITK not found. Error !")
-ENDIF(ITK_FOUND)
+if(ITK_FOUND)
+  include(${USE_ITK_FILE})
+else(ITK_FOUND)
+  message("ITK not found. Error !")
+endif(ITK_FOUND)
 
-MESSAGE("USE_ITK_FILE= " ${USE_ITK_FILE})
+message("USE_ITK_FILE= " ${USE_ITK_FILE})
 
 #################################
 
 ###### FIND QT PACKAGE ##########
 
-FIND_PACKAGE(Qt4 REQUIRED)
-IF(QT_USE_FILE)
-  INCLUDE(${QT_USE_FILE})
-  MESSAGE("QT_USE_FILE=" ${QT_USE_FILE})
-  SET(QT_USE_QTXML 1)
-ELSE(QT_USE_FILE)
-  SET( QT_LIBRARIES   ${QT_QT_LIBRARY} )
-ENDIF(QT_USE_FILE)
+find_package(Qt4 REQUIRED)
+if(QT_USE_FILE)
+  include(${QT_USE_FILE})
+  message("QT_USE_FILE=" ${QT_USE_FILE})
+  set(QT_USE_QTXML 1)
+else(QT_USE_FILE)
+  set( QT_LIBRARIES   ${QT_QT_LIBRARY} )
+endif(QT_USE_FILE)
 
 ################################
 
 ###### FIND GLUT PACKAGE #######
 
-INCLUDE(${CMAKE_CURRENT_SOURCE_DIR}/CMake/glutSetup.cmake)  
+include(${CMAKE_CURRENT_SOURCE_DIR}/CMake/glutSetup.cmake)
 
 ################################
 
 ##### Include directories ######
 
-INCLUDE (${CMAKE_ROOT}/Modules/FindOpenGL.cmake)
-INCLUDE (${CMAKE_ROOT}/Modules/FindGLU.cmake)
+include(${CMAKE_ROOT}/Modules/FindOpenGL.cmake)
+include(${CMAKE_ROOT}/Modules/FindGLU.cmake)
 
-INCLUDE_DIRECTORIES(
+include_directories(
   ${QT_INCLUDE_DIR}
   ${GLUT_INCLUDE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}/Libraries/IO/Qt
@@ -54,11 +54,11 @@ INCLUDE_DIRECTORIES(
 
 ###### Include source files #####
 
-IF(WIN32)
- SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /subsystem:windows")
-ENDIF(WIN32)
+if(WIN32)
+ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /subsystem:windows")
+endif(WIN32)
 
-SET(MriWatcher_SRCS
+set(MriWatcher_SRCS
   main.cpp
   mriwatchergui.cpp
   mriwatcherframe.cpp
@@ -67,31 +67,31 @@ SET(MriWatcher_SRCS
   imageframelayout.cpp
 )
 
-IF(WIN32)
-SET(MriWatcher_SRCS 
+if(WIN32)
+set(MriWatcher_SRCS
 	${MriWatcher_SRCS}
 	MriWatcher.rc
 )
-ENDIF(WIN32)
+endif(WIN32)
 
 
-SET(MriWatcher_MOC_SRCS
+set(MriWatcher_MOC_SRCS
   mriwatchergui.h
   mriwatcherframe.h
   imageframegui.h
   qtwindow2dfloat.h
 )
 
-SET(MriWatcher_HEADERS
+set(MriWatcher_HEADERS
   imageframelayout.h
 )
 
-SET(MriWatcher_GUI_SRCS 
+set(MriWatcher_GUI_SRCS
   mriwatcherform.ui
   imageframeform.ui
 )
 
-SET(MriWatcher_RES
+set(MriWatcher_RES
   icon.qrc
 )
 
@@ -100,12 +100,12 @@ QT4_WRAP_UI(MriWatcher_FORMS_HEADERS ${MriWatcher_GUI_SRCS})
 QT4_ADD_RESOURCES(MriWatcher_RES_RCC ${MriWatcher_RES})
 
 
-ADD_DEFINITIONS(-DQT_DLL)
-ADD_DEFINITIONS(-DQT_THREAD_SUPPORT)
-ADD_DEFINITIONS(${QT_DEFINITIONS})
-ADD_DEFINITIONS(-DMriWatcher_VERSION="2.1")
+add_definitions(-DQT_DLL)
+add_definitions(-DQT_THREAD_SUPPORT)
+add_definitions(${QT_DEFINITIONS})
+add_definitions(-DMriWatcher_VERSION="2.1")
 
-ADD_EXECUTABLE(MriWatcher
+add_executable(MriWatcher
   ${MriWatcher_SRCS}
   ${MriWatcher_HEADERS}
   ${MriWatcher_MOC_HEADERS}
@@ -113,9 +113,9 @@ ADD_EXECUTABLE(MriWatcher
   ${MriWatcher_RES_RCC}
 )
 
-MESSAGE("ITKIO= " ${ITK_LIBRARIES})
+message("ITKIO= " ${ITK_LIBRARIES})
 
-TARGET_LINK_LIBRARIES(MriWatcher
+target_link_libraries(MriWatcher
   ${GLUT_glut_LIBRARY}
   ${ITK_LIBRARIES}
   ${QT_LIBRARIES}
