@@ -15,14 +15,14 @@
 #ifndef __NeuroLibOpenGLSliceTexture_h_
 #define __NeuroLibOpenGLSliceTexture_h_
 
-//#include <FL/gl.h>
-#include <GL/glu.h>
 
+#include "itkNumericTraitsRGBAPixel.h"
 #include "itkImage.h"
 #include "itkPixelTraits.h"
 #include "itkRGBAPixel.h"
 #include "itkConstantPadImageFilter.h"
 #include "vnl/vnl_vector_fixed.h"
+#include <GL/glu.h>
 /**
  * \class OpenGLSliceTexture
  * \brief This class is used to turn a 2D ITK image of (arbitrary) type

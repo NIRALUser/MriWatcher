@@ -1,3 +1,4 @@
+#include "itkNumericTraitsRGBAPixel.h"
 #include "QtWindow2D.h"
 #include "ImageManager.h"
 #include "itkMinimumMaximumImageCalculator.h"

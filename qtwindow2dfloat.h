@@ -17,6 +17,7 @@
 #ifndef QtWindow2DFloat_H
 #define QtWindow2DFloat_H
 
+#include "itkNumericTraitsRGBAPixel.h"
 #include "itkImage.h"
 #include "itkColorTable.h"
 #include "itkImageRegionIterator.h"

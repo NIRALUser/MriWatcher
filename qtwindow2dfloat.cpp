@@ -1,3 +1,4 @@
+#include "itkNumericTraitsRGBAPixel.h"
 #include "qtwindow2dfloat.h"
 #include "imagemanagerfloat.h"
 #include "itkMinimumMaximumImageCalculator.h"
@@ -9,6 +10,8 @@
  */
 typedef itk::RGBAPixel<unsigned char> ColorPixel;
 
+#if ITK_VERSION_MAJOR < 4
+// Numeric traits are properly defined for RGBAPixel in ITKv4
 namespace itk {
 template<>
 class NumericTraits<ColorPixel>
@@ -31,7 +34,6 @@ private:
   static const unsigned char ZeroArray[4];
   static const unsigned char OneArray[4];
 };
-
 } // End of namespace
 
 const unsigned char itk::NumericTraits<ColorPixel>::ZeroArray[4] = {0,0,0,0};
@@ -42,6 +44,7 @@ const unsigned char itk::NumericTraits<ColorPixel>::OneArray[4] = {1,1,1,1};
 const ColorPixel itk::NumericTraits<ColorPixel>::One = 
   ColorPixel(itk::NumericTraits<ColorPixel>::OneArray);
 
+#endif
 
 QtWindow2DFloat::QtWindow2DFloat( QWidget *parent, const char *name)
 : QGLWidget(parent)
@@ -68,7 +71,11 @@ QtWindow2DFloat::QtWindow2DFloat( QWidget *parent, const char *name)
   m_alpha = 100;
   m_overlaymax = 0;
   cColorTable = ColorTableType::New();
+#if ITK_VERSION_MAJOR < 4
   cColorTable->useDiscrete();
+#else
+  cColorTable->UseDiscreteColors();
+#endif
   cW = 0;
   cH = 0;
   for(unsigned int i=0;i<3;i++)
@@ -141,8 +148,12 @@ QtWindow2DFloat( QGLFormat glf, QWidget *parent, const char *name)
   cOverlayOpacity       = 0.5;
   cWinOverlayData       = NULL;
   cColorTable = ColorTableType::New();
+#if ITK_VERSION_MAJOR < 4
   cColorTable->useDiscrete();
-  
+#else
+  cColorTable->UseDiscreteColors();
+#endif
+
   // Initialize the Grey slice texture
   m_GreyTexture = new GreyTextureType;
   m_LabelTexture = new LabelTextureType;

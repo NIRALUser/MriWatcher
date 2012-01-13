@@ -12,6 +12,9 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
+
+#include "itkNumericTraitsRGBAPixel.h"
+
 template<class TPixel>
 NeuroLibOpenGLSliceTexture<TPixel>
 ::NeuroLibOpenGLSliceTexture()

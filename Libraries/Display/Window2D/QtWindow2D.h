@@ -17,6 +17,7 @@
 #ifndef QtWindow2D_H
 #define QtWindow2D_H
 
+#include "itkNumericTraitsRGBAPixel.h"
 #include "itkImage.h"
 #include "itkColorTable.h"
 #include "itkImageRegionIterator.h"

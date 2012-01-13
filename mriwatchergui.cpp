@@ -1,7 +1,6 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <itkMinimumMaximumImageCalculator.h>
-#include "itkImageFileReader.h"
 #include "mriwatchergui.h"
 //#include "ui_mriwatcherform.h"
 
@@ -115,7 +114,7 @@ void MriWatcherGUI::LoadFile(const QString& filename)
     ReaderType::Pointer reader = ReaderType::New();
     ImageType::Pointer image = reader->GetOutput();
 
-    reader->SetFileName( filename.toLatin1() );
+    reader->SetFileName( filename.toLatin1().constData() );
     try
     {
         reader->Update();
@@ -247,14 +246,14 @@ void MriWatcherGUI::LoadOverlay()
     if (filename != NULL)
     {
         ReaderType::Pointer reader = ReaderType::New();
-	reader->SetFileName( filename.toLatin1() );
+	reader->SetFileName( filename.toLatin1().constData() );
 	try
 	{
 	    reader->Update();
 	}
 	catch (itk::ExceptionObject & e)
 	{
-	    QMessageBox::information( this, "MriWatcher", "Unable to load file:\n"+filename.toLatin1());
+	    QMessageBox::information( this, "MriWatcher", "Unable to load file:\n"+filename.toLatin1() );
 	    return;
 	}
 	
@@ -276,7 +275,7 @@ void MriWatcherGUI::LoadOverlay(const QString& filename2)
     ReaderType::Pointer reader = ReaderType::New();
     QString filename = filename2;
     filename.replace( QRegExp("\\"), "/" );
-    reader->SetFileName( filename.toLatin1());
+    reader->SetFileName( filename.toLatin1().constData() );
     try 
     {
     reader->Update();
@@ -313,14 +312,14 @@ void MriWatcherGUI::LoadImg2()
     if (filename != NULL)
     {   
         ReaderType::Pointer reader = ReaderType::New();
-        reader->SetFileName( filename.toLatin1() );
+        reader->SetFileName( filename.toLatin1().constData() );
         try 
         {   
             reader->Update();
         }   
         catch (itk::ExceptionObject & e)
         {   
-            QMessageBox::information( this, "MriWatcher", "Unable to load file:\n"+filename.toLatin1());
+            QMessageBox::information( this, "MriWatcher", "Unable to load file:\n"+filename.toLatin1() );
             return;
         }   
     
@@ -753,7 +752,7 @@ void MriWatcherGUI::Combine()
     }
     
     WriterType::Pointer writer = WriterType::New();
-    writer->SetFileName(m_filename.toLatin1());
+    writer->SetFileName(m_filename.toLatin1().constData() );
     writer->SetInput(m_newimage);
     writer->Update();
     
@@ -954,14 +953,14 @@ bool MriWatcherGUI::eventFilter(QObject* o, QEvent* e)
                 if (filename != NULL)
 		{
 		    ReaderType::Pointer reader = ReaderType::New();
-		    reader->SetFileName( filename.toLatin1() );
+		    reader->SetFileName( filename.toLatin1().constData() );
 		    try
 		    {
 		        reader->Update();
 		    }
 		    catch (itk::ExceptionObject & e)
 		    {
-		        QMessageBox::information( this, "MriWatcher", "Unable to load file:\n"+filename.toLatin1());
+		        QMessageBox::information( this, "MriWatcher", "Unable to load file:\n"+filename.toLatin1() );
 		        return false;
 		    }
 		    
@@ -1013,14 +1012,14 @@ bool MriWatcherGUI::eventFilter(QObject* o, QEvent* e)
                 if (filename != NULL)
                 {
                     ReaderType::Pointer reader = ReaderType::New();
-                    reader->SetFileName( filename.toLatin1() );
+                    reader->SetFileName( filename.toLatin1().constData() );
                     try
                     {
                         reader->Update();
                     }
                     catch (itk::ExceptionObject & e)
                     {
-                        QMessageBox::information( this, "MriWatcher", "Unable to load file:\n"+filename.toLatin1());
+                        QMessageBox::information( this, "MriWatcher", "Unable to load file:\n"+filename.toLatin1() );
                         return false;
                     }
 
