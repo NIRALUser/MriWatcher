@@ -7,6 +7,7 @@
 #include <itkImageRegionIterator.h>
 #include <itkImageFileReader.h>
 #include <itkImageFileWriter.h>
+#include <itkOrientImageFilter.h>
 
 #include "ui_mriwatcherform.h"
 // #include "mriwatcherhelp.h"
@@ -25,25 +26,35 @@ namespace Ui {
 class MriWatcherGUI : public QWidget, private Ui::MriWatcherForm
 {
   Q_OBJECT
+
 public:
-  explicit MriWatcherGUI(QWidget *parent = 0);
-  ~MriWatcherGUI();
-  void ScreenShot(QString);
-  void resizeEvent(QResizeEvent *);
+    
+    typedef float PixelType;
+    typedef float OverlayPixelType;
+    typedef itk::Image<PixelType,3> ImageType;
+    typedef itk::Image<unsigned char,2> Image2DType;
+    typedef itk::Image<OverlayPixelType,3> OverlayType;
+    typedef itk::ImageRegionIterator<ImageType> IteratorType;
+    typedef itk::ImageRegionIterator<Image2DType> Iterator2DType;
+    typedef itk::ImageFileWriter<ImageType>   WriterType;
+    typedef itk::ImageFileReader<ImageType>   ReaderType;
+    typedef itk::SpatialOrientation::ValidCoordinateOrientationFlags OrientationType;
 
-  bool eventFilter(QObject *, QEvent *);
+    explicit MriWatcherGUI(QWidget *parent = 0);
+    ~MriWatcherGUI();
+    void ScreenShot(QString);
+    void resizeEvent(QResizeEvent *);
+    
+    bool eventFilter(QObject *, QEvent *);
+    
+    void SetViewAllImages();
+    
+    ImageType::Pointer ChangeOrientation(ImageType::Pointer image, QString orientation = "RAI");
+    
+    QString OrientationToString(OrientationType);
+    
+    OrientationType StringToOrientation(QString);
 
-  void SetViewAllImages();
-
-  typedef float                                 PixelType;
-  typedef float                                 OverlayPixelType;
-  typedef itk::Image<PixelType, 3>              ImageType;
-  typedef itk::Image<unsigned char, 2>          Image2DType;
-  typedef itk::Image<OverlayPixelType, 3>       OverlayType;
-  typedef itk::ImageRegionIterator<ImageType>   IteratorType;
-  typedef itk::ImageRegionIterator<Image2DType> Iterator2DType;
-  typedef itk::ImageFileWriter<ImageType>       WriterType;
-  typedef itk::ImageFileReader<ImageType>       ReaderType;
 public slots:
   void LoadFile(const QString &);
 
@@ -98,6 +109,10 @@ public slots:
   void SelectAll();
 
   void UnSelectAll();
+  
+  void ChangeDesiredOrientation();
+    
+
 
 private:
   void ComputeMaxColumn(int &, int &);

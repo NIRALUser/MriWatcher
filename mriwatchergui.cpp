@@ -1,8 +1,13 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <itkMinimumMaximumImageCalculator.h>
+#include "itkImageFileReader.h"
 #include "mriwatchergui.h"
 // #include "ui_mriwatcherform.h"
+
+#include "itkAnalyzeImageIO.h"
+#include "itkImage.h"
+#include "itkOrientImageFilter.h"
 
 static const float MAX_PERCENTAGE = 1000;
 
@@ -39,6 +44,8 @@ MriWatcherGUI::MriWatcherGUI(QWidget *parent)
   connect(g_nbcolumn, SIGNAL( returnPressed() ), this, SLOT( ViewOptions() ) );
   connect(g_overlaymin, SIGNAL( returnPressed() ), this, SLOT( ChangeOverlayMinMax() ) );
   connect(g_overlaymax, SIGNAL( returnPressed() ), this, SLOT( ChangeOverlayMinMax() ) );
+  connect(g_desired_orientation, SIGNAL( returnPressed() ), this, SLOT( ChangeDesiredOrientation() ));
+
 
   m_direction = 0;
   m_numberofimages = 0;
@@ -127,6 +134,11 @@ void MriWatcherGUI::LoadFile(const QString& filename)
                               "Unable to load file:\n" + filename);
 
     return;
+    }
+
+    if (g_load_RAI->isChecked())
+    {
+        image = ChangeOrientation(image);
     }
 
   m_numberofimages++;
@@ -229,17 +241,6 @@ void MriWatcherGUI::LoadFile(const QString& filename)
 
   UpdateLabel();
 
-/*
-    if (!filename.isEmpty()) {
-         QImage image(filename);
-         if (image.isNull()) {
-             QMessageBox::information(this, tr("Image Viewer"),
-                                      tr("Cannot load %1.").arg(filename));
-             return;
-         }
-     //   imageLabel->setPixmap(QPixmap::fromImage(image));
-     }
-*/
 }
 
 void MriWatcherGUI::LoadOverlay()
@@ -265,6 +266,12 @@ void MriWatcherGUI::LoadOverlay()
       }
 
     m_originalimage = reader->GetOutput();
+
+        if (g_load_RAI->isChecked())
+        {    
+            m_originalimage = ChangeOrientation(m_originalimage);
+        }
+
     if( m_originalimage.IsNotNull() )
       {
       m_imagemanager.SetSourceOverlay(m_originalimage);
@@ -299,6 +306,12 @@ void MriWatcherGUI::LoadOverlay(const QString& filename2)
     {
     m_imageframelist[i]->g_imageframe->SetInputOverlay(reader->GetOutput() );
     m_originalimage = reader->GetOutput();
+
+    if (g_load_RAI->isChecked())
+    {
+        m_originalimage = ChangeOrientation(m_originalimage);
+    }        
+ 
     if( m_originalimage.IsNotNull() )
       {
       m_imagemanager.SetSourceOverlay(m_originalimage);
@@ -333,6 +346,12 @@ void MriWatcherGUI::LoadImg2()
       }
 
     m_originalimage = reader->GetOutput();
+
+        if (g_load_RAI->isChecked())
+        {
+            m_originalimage = ChangeOrientation(m_originalimage);
+        }
+
     if( m_originalimage.IsNotNull() )
       {
       m_imagemanager.SetTargetImage(m_originalimage);
@@ -1039,6 +1058,12 @@ bool MriWatcherGUI::eventFilter(QObject* o, QEvent* e)
             }
 
           m_originalimage = reader->GetOutput();
+
+          if (g_load_RAI->isChecked())
+          {
+              m_originalimage = ChangeOrientation(m_originalimage);
+          }
+
           if( m_originalimage.IsNotNull() )
             {
             for( unsigned int i = 0; i < m_imageframelist.size(); i++ )
@@ -1110,6 +1135,12 @@ bool MriWatcherGUI::eventFilter(QObject* o, QEvent* e)
             }
 
           m_originalimage = reader->GetOutput();
+
+          if (g_load_RAI->isChecked())
+          {
+              m_originalimage = ChangeOrientation(m_originalimage);
+          }
+
           if( m_originalimage.IsNotNull() )
             {
             for( unsigned int i = 0; i < m_imageframelist.size(); i++ )
@@ -1197,4 +1228,236 @@ void MriWatcherGUI::dropEvent(QDropEvent *de)
     {
     LoadFile(urls.at(i).path() );
     }
+}
+
+QString MriWatcherGUI::OrientationToString(OrientationType in)
+{
+  switch(in)
+    {
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RIP:
+      return QString("RIP");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LIP:
+      return QString("LIP");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RSP:
+      return QString("RSP");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LSP:
+      return QString("LSP");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RIA:
+      return QString("RIA");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LIA:
+      return QString("LIA");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RSA:
+      return QString("RSA");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LSA:
+      return QString("LSA");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IRP:
+      return QString("IRP");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ILP:
+      return QString("ILP");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SRP:
+      return QString("SRP");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SLP:
+      return QString("SLP");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IRA:
+      return QString("IRA");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ILA:
+      return QString("ILA");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SRA:
+      return QString("SRA");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SLA:
+      return QString("SLA");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RPI:
+      return QString("RPI");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LPI:
+      return QString("LPI");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RAI:
+      return QString("RAI");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LAI:
+      return QString("LAI");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RPS:
+      return QString("RPS");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LPS:
+      return QString("LPS");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RAS:
+      return QString("RAS");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LAS:
+      return QString("LAS");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PRI:
+      return QString("PRI");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PLI:
+      return QString("PLI");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ARI:
+      return QString("ARI");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ALI:
+      return QString("ALI");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PRS:
+      return QString("PRS");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PLS:
+      return QString("PLS");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ARS:
+      return QString("ARS");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ALS:
+      return QString("ALS");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IPR:
+      return QString("IPR");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SPR:
+      return QString("SPR");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IAR:
+      return QString("IAR");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SAR:
+      return QString("SAR");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IPL:
+      return QString("IPL");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SPL:
+      return QString("SPL");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IAL:
+      return QString("IAL");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SAL:
+      return QString("SAL");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PIR:
+      return QString("PIR");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PSR:
+      return QString("PSR");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_AIR:
+      return QString("AIR");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ASR:
+      return QString("ASR");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PIL:
+      return QString("PIL");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PSL:
+      return QString("PSL");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_AIL:
+      return QString("AIL");
+    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ASL:
+      return QString("ASL");
+    default:
+      return QString("N/A");
+    }
+}
+
+itk::SpatialOrientation::ValidCoordinateOrientationFlags MriWatcherGUI::StringToOrientation(QString in)
+{
+    if (in == "RIP")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RIP;
+    if (in == "LIP")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LIP;
+    if (in == "RSP")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RSP;
+    if (in == "LSP")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LSP;
+    if (in == "RIA")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RIA;
+    if (in == "LIA")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LIA;
+    if (in == "RSA")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RSA;
+    if (in == "LSA")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LSA;
+    if (in == "IRP")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IRP;
+    if (in == "ILP")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ILP;
+    if (in == "SRP")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SRP;
+    if (in == "SLP")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SLP;
+    if (in == "IRA")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IRA;
+    if (in == "ILA")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ILA;
+    if (in == "SRA")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SRA;
+    if (in == "SLA")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SLA;
+    if (in == "RPI")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RPI;
+    if (in == "LPI")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LPI;
+    if (in == "RAI")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RAI;
+    if (in == "LAI")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LAI;
+    if (in == "RPS")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RPS;
+    if (in == "LPS")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LPS;
+    if (in == "RAS")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RAS;
+    if (in == "LAS")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LAS;
+    if (in == "PRI")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PRI;
+    if (in == "PLI")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PLI;
+    if (in == "ARI")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ARI;
+    if (in == "ALI")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ALI;
+    if (in == "PRS")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PRS;
+    if (in == "PLS")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PLS;
+    if (in == "ARS")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ARS;
+    if (in == "ALS")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ALS;
+    if (in == "IPR")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IPR;
+    if (in == "SPR")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SPR;
+    if (in == "IAR")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IAR;
+    if (in == "SAR")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SAR;
+    if (in == "IPL")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IPL;
+    if (in == "SPL")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SPL;
+    if (in == "IAL")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IAL;
+    if (in == "SAL")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SAL;
+    if (in == "PIR")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PIR;
+    if (in == "PSR")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PSR;
+    if (in == "AIR")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_AIR;
+    if (in == "ASR")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ASR;
+    if (in == "PIL")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PIL;
+    if (in == "PSL")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PSL;
+    if (in == "AIL")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_AIL;
+    if (in == "ASL")
+        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ASL;
+    
+    return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_INVALID;
+}
+
+MriWatcherGUI::ImageType::Pointer MriWatcherGUI::ChangeOrientation(ImageType::Pointer image, QString orientation)
+{
+    itk::OrientImageFilter<ImageType,ImageType>::Pointer orienter = itk::OrientImageFilter<ImageType,ImageType>::New();
+    orienter->UseImageDirectionOn();
+    orienter->SetDesiredCoordinateOrientation(StringToOrientation(orientation));
+    orienter->SetInput(image);
+    orienter->Update();
+    image = orienter->GetOutput();
+    return image;
+}
+
+void MriWatcherGUI::ChangeDesiredOrientation()
+{
+    QString orientation = g_desired_orientation->text();
+    ImageType::Pointer image;
+    for (unsigned int i=0; i<m_imageframelist.size(); i++)
+    {
+       image = m_imageframelist[i]->g_imageframe->GetInputImage2();
+       image = ChangeOrientation(image, orientation);
+       m_imageframelist[i]->g_imageframe->SetInputImage(image);
+    }
+    UpdateLabel();
+
 }

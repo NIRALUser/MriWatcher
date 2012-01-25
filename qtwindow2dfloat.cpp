@@ -702,7 +702,7 @@ QtWindow2DFloat::update()
     {
     if( m_id == 0 )
       {
-      ind[1] = k;
+      ind[1] = cWinMaxY-k;
       }
     if( m_id == 1 )
       {
@@ -837,7 +837,7 @@ QtWindow2DFloat::update()
       {
       if( m_id == 0 )
         {
-        ind[1] = k;
+        ind[1] = cWinMaxY-k;
         }
       if( m_id == 1 )
         {
