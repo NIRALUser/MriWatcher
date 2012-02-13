@@ -2,6 +2,8 @@ project(MRIWatcher)
 
 cmake_minimum_required(VERSION 2.6)
 
+include(CPack)
+
 ###### FIND ITK PACKAGE #########
 find_package(ITK)
 
