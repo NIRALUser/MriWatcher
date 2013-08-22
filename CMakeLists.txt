@@ -105,7 +105,7 @@ QT4_ADD_RESOURCES(MriWatcher_RES_RCC ${MriWatcher_RES})
 add_definitions(-DQT_DLL)
 add_definitions(-DQT_THREAD_SUPPORT)
 add_definitions(${QT_DEFINITIONS})
-add_definitions(-DMriWatcher_VERSION="2.2")
+add_definitions(-DMriWatcher_VERSION="2.3")
 
 add_executable(MriWatcher
   ${MriWatcher_SRCS}
@@ -115,7 +115,7 @@ add_executable(MriWatcher
   ${MriWatcher_RES_RCC}
 )
 
-message("ITKIO= " ${ITK_LIBRARIES})
+#message("ITKIO= " ${ITK_LIBRARIES})
 
 target_link_libraries(MriWatcher
   ${GLUT_glut_LIBRARY}

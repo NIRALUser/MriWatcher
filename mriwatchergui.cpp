@@ -1,13 +1,8 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <itkMinimumMaximumImageCalculator.h>
-#include "itkImageFileReader.h"
 #include "mriwatchergui.h"
 // #include "ui_mriwatcherform.h"
-
-#include "itkAnalyzeImageIO.h"
-#include "itkImage.h"
-#include "itkOrientImageFilter.h"
 
 static const float MAX_PERCENTAGE = 1000;
 
@@ -41,11 +36,10 @@ MriWatcherGUI::MriWatcherGUI(QWidget *parent)
   connect(g_alpha, SIGNAL( valueChanged(int) ), this, SLOT( ChangeImageAlpha(int) ) );
   connect(g_viewall, SIGNAL( toggled(bool) ), this, SLOT( ViewOptions() ) );
   connect(g_viewcolumn, SIGNAL( toggled(bool) ), this, SLOT( ViewOptions() ) );
-  connect(g_nbcolumn, SIGNAL( returnPressed() ), this, SLOT( ViewOptions() ) );
+  // connect(g_nbcolumn, SIGNAL( returnPressed() ), this, SLOT( ViewOptions() ) );
+  connect(g_nbcolumn, SIGNAL( valueChanged(int) ), this, SLOT( ChangeColumn() ));
   connect(g_overlaymin, SIGNAL( returnPressed() ), this, SLOT( ChangeOverlayMinMax() ) );
   connect(g_overlaymax, SIGNAL( returnPressed() ), this, SLOT( ChangeOverlayMinMax() ) );
-  connect(g_desired_orientation, SIGNAL( returnPressed() ), this, SLOT( ChangeDesiredOrientation() ));
-
 
   m_direction = 0;
   m_numberofimages = 0;
@@ -86,7 +80,7 @@ MriWatcherGUI::MriWatcherGUI(QWidget *parent)
 
   g_name_version->setText(QString("MriWatcher") + "  " + MriWatcher_VERSION);
   g_tips->setText(
-    "\nQuick Tips:\n- Left mouse: Move\n- Right mouse: Zoom\n- Middle mouse: Select\n- Shift + mouse: Global");
+    "\nQuick Tips:\n- Left mouse drag: Move image\n- Right mouse drag: Zoom in/out\n- Middle mouse: Pick one voxel\n- Control + mouse: Pick images\n- Shift + mouse: Global operatation\n- Left or right key: Switch order\n- Delete key: Remove image");
 /*
      imageLabel = new QLabel;
      imageLabel->setBackgroundRole(QPalette::Base);
@@ -134,11 +128,6 @@ void MriWatcherGUI::LoadFile(const QString& filename)
                               "Unable to load file:\n" + filename);
 
     return;
-    }
-
-    if (g_load_RAI->isChecked())
-    {
-        image = ChangeOrientation(image);
     }
 
   m_numberofimages++;
@@ -241,6 +230,17 @@ void MriWatcherGUI::LoadFile(const QString& filename)
 
   UpdateLabel();
 
+/*
+    if (!filename.isEmpty()) {
+         QImage image(filename);
+         if (image.isNull()) {
+             QMessageBox::information(this, tr("Image Viewer"),
+                                      tr("Cannot load %1.").arg(filename));
+             return;
+         }
+     //   imageLabel->setPixmap(QPixmap::fromImage(image));
+     }
+*/
 }
 
 void MriWatcherGUI::LoadOverlay()
@@ -266,12 +266,6 @@ void MriWatcherGUI::LoadOverlay()
       }
 
     m_originalimage = reader->GetOutput();
-
-        if (g_load_RAI->isChecked())
-        {    
-            m_originalimage = ChangeOrientation(m_originalimage);
-        }
-
     if( m_originalimage.IsNotNull() )
       {
       m_imagemanager.SetSourceOverlay(m_originalimage);
@@ -306,12 +300,6 @@ void MriWatcherGUI::LoadOverlay(const QString& filename2)
     {
     m_imageframelist[i]->g_imageframe->SetInputOverlay(reader->GetOutput() );
     m_originalimage = reader->GetOutput();
-
-    if (g_load_RAI->isChecked())
-    {
-        m_originalimage = ChangeOrientation(m_originalimage);
-    }        
- 
     if( m_originalimage.IsNotNull() )
       {
       m_imagemanager.SetSourceOverlay(m_originalimage);
@@ -346,12 +334,6 @@ void MriWatcherGUI::LoadImg2()
       }
 
     m_originalimage = reader->GetOutput();
-
-        if (g_load_RAI->isChecked())
-        {
-            m_originalimage = ChangeOrientation(m_originalimage);
-        }
-
     if( m_originalimage.IsNotNull() )
       {
       m_imagemanager.SetTargetImage(m_originalimage);
@@ -618,29 +600,40 @@ void MriWatcherGUI::ComputeMaxColumn(int& nb_column, int& height)
 
 void MriWatcherGUI::ReDraw()
 {
-  m_frame->setMinimumWidth(g_scrollArea->viewport()->size().width() );
-  if( m_numberofimages == 0 )
-    {
-    m_frame->setMinimumHeight(0);
-    }
-  else
-    {
-    if( g_viewall->isChecked() )
-      {
-      int height;
-      int nb_column;
-      ComputeMaxColumn(nb_column, height);
-      m_frame->setMinimumHeight(height);
+  int nb_column, min_width, min_height;
+  ComputeHeightWidth(nb_column, min_height, min_width);
       m_imageframelayout->setColumn(nb_column);
-      }
-    else
-      {
-      int nb_column = g_nbcolumn->text().toInt();
-      m_frame->setMinimumHeight( ( ( (m_numberofimages
-                                      - 1) / nb_column) + 1) * (g_scrollArea->viewport()->size().width() / nb_column) );
-      m_imageframelayout->setColumn(nb_column);
-      }
-    }
+  m_frame->setMinimumHeight(min_height);
+  m_frame->setMinimumWidth(min_width);
+ 
+ //  m_frame->setMinimumWidth((int)(g_scrollArea->viewport()->size().width() / g_nbcolumn->text().toInt()) * g_nbcolumn->text().toInt() );
+ //  if( m_numberofimages == 0 )
+ //    {
+ //    m_frame->setMinimumHeight(0);
+ //    }
+ //  else
+ //    {
+ //    if( g_viewall->isChecked() )
+ //      {
+ //      int height;
+ //      int nb_column;
+ //      ComputeMaxColumn(nb_column, height);
+ //      m_frame->setMinimumHeight(height);
+ //      m_imageframelayout->setColumn(nb_column);
+ //      }
+ //    else
+ //      {
+ //      int nb_column = g_nbcolumn->text().toInt();
+ //      int tmp = m_numberofimages / nb_column;
+ // if (m_numberofimages % nb_column)
+ //   {
+ //     tmp = tmp + 1;
+ //   }
+ // m_frame->setMinimumHeight( tmp * (g_scrollArea->viewport()->size().width() / nb_column) );
+
+ //      m_imageframelayout->setColumn(nb_column);
+ //      }
+ //    }
 }
 
 void MriWatcherGUI::SetViewAllImages()
@@ -649,49 +642,73 @@ void MriWatcherGUI::SetViewAllImages()
   ViewOptions();
 }
 
-void MriWatcherGUI::ViewOptions()
-{
-// printf("enter viewoptions\n");
-  if( g_viewall->isChecked() )
+void MriWatcherGUI::ComputeHeightWidth(int &nb_column, int &min_height, int &min_width)
     {
-    m_imageframelayout->setColumn(0);
-
+  // printf("Enter ComputeHeightWidth\n");
     if( m_numberofimages == 0 )
       {
-      m_frame->setMinimumHeight(0);
+      nb_column = 0;
+      min_height = 0;
+      min_width = 0;
       }
     else
       {
-      int height;
-      int nb_column;
-      ComputeMaxColumn(nb_column, height);
-
-// printf("view all: height=%d, nb_column=%d\n", height, nb_column);
-
-      m_frame->setMinimumHeight(height);
-      m_imageframelayout->setColumn(nb_column);
+      int scrollArea_width = g_scrollArea->viewport()->size().width();
+      int scrollArea_height = g_scrollArea->viewport()->size().height();
+      int nb_row = 0;
+      if (g_viewall->isChecked())
+	{
+	  for (int i = 1; i <= m_numberofimages; i++)
+	    {
+	      nb_column = i;
+	      min_width = (int)(scrollArea_width / nb_column) * nb_column;
+	      nb_row = m_numberofimages / nb_column;
+	      if (m_numberofimages % nb_column)
+		{
+		  nb_row = nb_row + 1;
+		}
+	      min_height = (scrollArea_width / nb_column) * nb_row;
+	      if (min_height <= scrollArea_height)
+		{
+		  break;
+		}
       }
     }
   else
     {
-    int nb_column = g_nbcolumn->text().toInt();
-    // printf("nb_column=%d\n", nb_column);
-    if( nb_column != 0 )
+	  nb_column = g_nbcolumn->text().toInt();
+	  min_width = (int)(scrollArea_width / nb_column) * nb_column;
+	  nb_row = m_numberofimages / nb_column;
+	  if (m_numberofimages % nb_column)
       {
+	      nb_row = nb_row + 1;
+	    }
+	  min_height = (scrollArea_width / nb_column) * nb_row;
+	}
+    }
+}
+
+void MriWatcherGUI::ViewOptions()
+{
+  // printf("Enter ViewOptions\n");
+  int nb_column, min_width, min_height;
+  ComputeHeightWidth(nb_column, min_height, min_width);
       m_imageframelayout->setColumn(nb_column);
-      m_frame->setMinimumWidth(g_scrollArea->viewport()->size().width() );
-      if( m_numberofimages == 0 )
+  m_frame->setMinimumHeight(min_height);
+  m_frame->setMinimumWidth(min_width);
+  m_imageframelayout->doLayout(QRect(m_frame->x(), m_frame->y(), m_frame->minimumHeight(), m_frame->minimumWidth() ), false);
+}
+
+ void MriWatcherGUI::ChangeColumn()
         {
-        m_frame->setMinimumHeight(0);
+   if (g_viewall->isChecked())
+     {
+       return;
         }
       else
         {
-        m_frame->setMinimumHeight( ( ( (m_numberofimages
-                                        - 1) / nb_column) + 1) * (g_scrollArea->viewport()->size().width() / nb_column) );
-        }
-      }
+       ViewOptions();
     }
-  m_imageframelayout->doLayout();
 }
 
 void MriWatcherGUI::ResetView()
@@ -960,7 +977,8 @@ bool MriWatcherGUI::eventFilter(QObject* o, QEvent* e)
             m_imageframelist[i] = m_imageframelist[i + 1];
             m_imageframelist[i + 1] = m_image;
             m_imageframelayout->swap(i, i + 1);
-            m_imageframelayout->doLayout();
+            // printf("Call eventFilter of keypress m_frame->height() = %d, m_frame->width()=%d \n", m_frame->height(), m_frame->width());
+           m_imageframelayout->doLayout(QRect(m_frame->x(), m_frame->y(), m_frame->minimumHeight(), m_frame->minimumWidth() ), false);
             }
           }
         }
@@ -976,7 +994,8 @@ bool MriWatcherGUI::eventFilter(QObject* o, QEvent* e)
             m_imageframelist[i] = m_imageframelist[i - 1];
             m_imageframelist[i - 1] = m_image;
             m_imageframelayout->swap(i - 1, i);
-            m_imageframelayout->doLayout();
+            // printf("call eventFilter key left m_frame->height() = %d, m_frame->width()=%d \n", m_frame->height(), m_frame->width());
+            m_imageframelayout->doLayout(QRect(m_frame->x(), m_frame->y(), m_frame->minimumHeight(), m_frame->minimumWidth() ), false);
             }
           }
         }
@@ -1022,7 +1041,8 @@ bool MriWatcherGUI::eventFilter(QObject* o, QEvent* e)
             i--;
             m_numberofimages--;
             ReDraw();
-            m_imageframelayout->doLayout();
+            // printf("call eventFilter key delete m_frame->height() = %d, m_frame->width()=%d \n", m_frame->height(), m_frame->width());
+            m_imageframelayout->doLayout(QRect(m_frame->x(), m_frame->y(), m_frame->minimumHeight(), m_frame->minimumWidth() ), false);
             }
           }
         }
@@ -1058,12 +1078,6 @@ bool MriWatcherGUI::eventFilter(QObject* o, QEvent* e)
             }
 
           m_originalimage = reader->GetOutput();
-
-          if (g_load_RAI->isChecked())
-          {
-              m_originalimage = ChangeOrientation(m_originalimage);
-          }
-
           if( m_originalimage.IsNotNull() )
             {
             for( unsigned int i = 0; i < m_imageframelist.size(); i++ )
@@ -1135,12 +1149,6 @@ bool MriWatcherGUI::eventFilter(QObject* o, QEvent* e)
             }
 
           m_originalimage = reader->GetOutput();
-
-          if (g_load_RAI->isChecked())
-          {
-              m_originalimage = ChangeOrientation(m_originalimage);
-          }
-
           if( m_originalimage.IsNotNull() )
             {
             for( unsigned int i = 0; i < m_imageframelist.size(); i++ )
@@ -1228,236 +1236,4 @@ void MriWatcherGUI::dropEvent(QDropEvent *de)
     {
     LoadFile(urls.at(i).path() );
     }
-}
-
-QString MriWatcherGUI::OrientationToString(OrientationType in)
-{
-  switch(in)
-    {
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RIP:
-      return QString("RIP");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LIP:
-      return QString("LIP");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RSP:
-      return QString("RSP");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LSP:
-      return QString("LSP");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RIA:
-      return QString("RIA");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LIA:
-      return QString("LIA");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RSA:
-      return QString("RSA");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LSA:
-      return QString("LSA");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IRP:
-      return QString("IRP");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ILP:
-      return QString("ILP");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SRP:
-      return QString("SRP");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SLP:
-      return QString("SLP");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IRA:
-      return QString("IRA");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ILA:
-      return QString("ILA");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SRA:
-      return QString("SRA");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SLA:
-      return QString("SLA");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RPI:
-      return QString("RPI");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LPI:
-      return QString("LPI");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RAI:
-      return QString("RAI");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LAI:
-      return QString("LAI");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RPS:
-      return QString("RPS");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LPS:
-      return QString("LPS");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RAS:
-      return QString("RAS");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LAS:
-      return QString("LAS");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PRI:
-      return QString("PRI");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PLI:
-      return QString("PLI");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ARI:
-      return QString("ARI");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ALI:
-      return QString("ALI");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PRS:
-      return QString("PRS");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PLS:
-      return QString("PLS");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ARS:
-      return QString("ARS");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ALS:
-      return QString("ALS");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IPR:
-      return QString("IPR");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SPR:
-      return QString("SPR");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IAR:
-      return QString("IAR");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SAR:
-      return QString("SAR");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IPL:
-      return QString("IPL");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SPL:
-      return QString("SPL");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IAL:
-      return QString("IAL");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SAL:
-      return QString("SAL");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PIR:
-      return QString("PIR");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PSR:
-      return QString("PSR");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_AIR:
-      return QString("AIR");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ASR:
-      return QString("ASR");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PIL:
-      return QString("PIL");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PSL:
-      return QString("PSL");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_AIL:
-      return QString("AIL");
-    case itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ASL:
-      return QString("ASL");
-    default:
-      return QString("N/A");
-    }
-}
-
-itk::SpatialOrientation::ValidCoordinateOrientationFlags MriWatcherGUI::StringToOrientation(QString in)
-{
-    if (in == "RIP")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RIP;
-    if (in == "LIP")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LIP;
-    if (in == "RSP")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RSP;
-    if (in == "LSP")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LSP;
-    if (in == "RIA")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RIA;
-    if (in == "LIA")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LIA;
-    if (in == "RSA")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RSA;
-    if (in == "LSA")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LSA;
-    if (in == "IRP")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IRP;
-    if (in == "ILP")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ILP;
-    if (in == "SRP")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SRP;
-    if (in == "SLP")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SLP;
-    if (in == "IRA")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IRA;
-    if (in == "ILA")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ILA;
-    if (in == "SRA")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SRA;
-    if (in == "SLA")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SLA;
-    if (in == "RPI")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RPI;
-    if (in == "LPI")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LPI;
-    if (in == "RAI")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RAI;
-    if (in == "LAI")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LAI;
-    if (in == "RPS")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RPS;
-    if (in == "LPS")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LPS;
-    if (in == "RAS")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_RAS;
-    if (in == "LAS")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_LAS;
-    if (in == "PRI")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PRI;
-    if (in == "PLI")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PLI;
-    if (in == "ARI")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ARI;
-    if (in == "ALI")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ALI;
-    if (in == "PRS")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PRS;
-    if (in == "PLS")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PLS;
-    if (in == "ARS")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ARS;
-    if (in == "ALS")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ALS;
-    if (in == "IPR")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IPR;
-    if (in == "SPR")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SPR;
-    if (in == "IAR")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IAR;
-    if (in == "SAR")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SAR;
-    if (in == "IPL")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IPL;
-    if (in == "SPL")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SPL;
-    if (in == "IAL")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_IAL;
-    if (in == "SAL")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_SAL;
-    if (in == "PIR")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PIR;
-    if (in == "PSR")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PSR;
-    if (in == "AIR")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_AIR;
-    if (in == "ASR")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ASR;
-    if (in == "PIL")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PIL;
-    if (in == "PSL")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_PSL;
-    if (in == "AIL")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_AIL;
-    if (in == "ASL")
-        return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_ASL;
-    
-    return itk::SpatialOrientation::ITK_COORDINATE_ORIENTATION_INVALID;
-}
-
-MriWatcherGUI::ImageType::Pointer MriWatcherGUI::ChangeOrientation(ImageType::Pointer image, QString orientation)
-{
-    itk::OrientImageFilter<ImageType,ImageType>::Pointer orienter = itk::OrientImageFilter<ImageType,ImageType>::New();
-    orienter->UseImageDirectionOn();
-    orienter->SetDesiredCoordinateOrientation(StringToOrientation(orientation));
-    orienter->SetInput(image);
-    orienter->Update();
-    image = orienter->GetOutput();
-    return image;
-}
-
-void MriWatcherGUI::ChangeDesiredOrientation()
-{
-    QString orientation = g_desired_orientation->text();
-    ImageType::Pointer image;
-    for (unsigned int i=0; i<m_imageframelist.size(); i++)
-    {
-       image = m_imageframelist[i]->g_imageframe->GetInputImage2();
-       image = ChangeOrientation(image, orientation);
-       m_imageframelist[i]->g_imageframe->SetInputImage(image);
-    }
-    UpdateLabel();
-
 }

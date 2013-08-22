@@ -14,6 +14,7 @@ ImageFrameLayout::ImageFrameLayout(QWidget * parent)
   m_oldy = 0;
   m_oldwidth = 0;
   m_oldheight = 0;
+  setSpacing(1);
 }
 
 ImageFrameLayout::~ImageFrameLayout()
@@ -146,10 +147,10 @@ int ImageFrameLayout::doLayout(QRect rec, bool testmode)
 // printf("framelayout: after set x and y, x=%d, y=%d, list.size=%d\n",x,y,list.size());
 
   int h = 0;      // height of this line so far.
-  if( (x == 0) && (y == 0) )
-    {
-    return 0;
-    }
+  // if( (x == 0) && (y == 0) )
+  //   {
+  //   return 0;
+  //   }
   // std::cout << "DoLayout: " <<  x << " | " << y << std::endl;
 
   // printf("framelayout: m_nbcolumn=%d\n", m_nbcolumn);
@@ -210,11 +211,11 @@ int ImageFrameLayout::doLayout(QRect rec, bool testmode)
         }
       }
 
-    if( list.count() == 0 )
-      {
-      // printf("framelayout: list.count()==0, call heightForWidth\n");
-      heightForWidth(0);
-      }
+    // if( list.count() == 0 )
+    //   {
+    //   // printf("framelayout: list.count()==0, call heightForWidth\n");
+    //   heightForWidth(0);
+    //   }
 
     int nextX = x + o->sizeHint().width() + spacing();
     if( nextX - spacing() > rec.right() && h > 0 )

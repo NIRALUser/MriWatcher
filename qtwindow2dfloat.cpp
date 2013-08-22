@@ -3,7 +3,11 @@
 #include "imagemanagerfloat.h"
 #include "itkMinimumMaximumImageCalculator.h"
 #include "Palette.h"
-#include "GL/glut.h"
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif
 
 /**
  * This definition is needed to use RGBA pixels for compilation
@@ -702,7 +706,7 @@ QtWindow2DFloat::update()
     {
     if( m_id == 0 )
       {
-      ind[1] = cWinMaxY-k;
+      ind[1] = k;
       }
     if( m_id == 1 )
       {
@@ -837,7 +841,7 @@ QtWindow2DFloat::update()
       {
       if( m_id == 0 )
         {
-        ind[1] = cWinMaxY-k;
+        ind[1] = k;
         }
       if( m_id == 1 )
         {

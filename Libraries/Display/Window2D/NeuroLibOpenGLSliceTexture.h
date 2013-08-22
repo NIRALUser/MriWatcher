@@ -21,7 +21,11 @@
 #include "itkRGBAPixel.h"
 #include "itkConstantPadImageFilter.h"
 #include "vnl/vnl_vector_fixed.h"
-#include <GL/glu.h>
+#if __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif
 /**
  * \class OpenGLSliceTexture
  * \brief This class is used to turn a 2D ITK image of (arbitrary) type
