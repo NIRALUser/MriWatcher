@@ -1234,6 +1234,6 @@ void MriWatcherGUI::dropEvent(QDropEvent *de)
   urls = de->mimeData()->urls();
   for( int i = 0; i < urls.size(); ++i )
     {
-    LoadFile(urls.at(i).path() );
+    LoadFile(urls.at(i).toLocalFile() );
     }
 }

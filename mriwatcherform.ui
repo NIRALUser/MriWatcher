@@ -812,7 +812,7 @@
       </property>
       <property name="icon">
        <iconset resource="icon.qrc">
-        <normaloff>:/buttons/images/buttons/loadimg2.SVG</normaloff>:/buttons/images/buttons/loadimg2.SVG</iconset>
+        <normaloff>:/buttons/images/buttons/loadimg2.png</normaloff>:/buttons/images/buttons/loadimg2.png</iconset>
       </property>
       <property name="iconSize">
        <size>

@@ -66,7 +66,7 @@ void MriWatcherFrame::dropEvent(QDropEvent *de)
   urls = de->mimeData()->urls();
   for( int i = 0; i < urls.size(); ++i )
     {
-    emit GetFiles(urls.at(i).path() );
+		emit GetFiles(urls.at(i).toLocalFile() );
     }
 }
 
