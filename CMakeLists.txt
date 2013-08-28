@@ -162,7 +162,9 @@ target_link_libraries(MriWatcher
   ${GLUT_glut_LIBRARY}
   ${ITK_LIBRARIES}
   ${QT_LIBRARIES}
+  ${QT_QTMAIN_LIBRARY}
   ${QT_QTOPENGL_LIBRARY}
+  ${OPENGL_glu_LIBRARY}
   ${OPENGL_LIBRARY}
 )
 
