@@ -786,7 +786,7 @@
       </property>
       <property name="icon">
        <iconset resource="icon.qrc">
-        <normaloff>:/buttons/images/buttons/loadoverlay.gif</normaloff>:/buttons/images/buttons/loadoverlay.gif</iconset>
+        <normaloff>:/buttons/images/buttons/loadoverlay.png</normaloff>:/buttons/images/buttons/loadoverlay.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -864,7 +864,7 @@
       </property>
       <property name="icon">
        <iconset resource="icon.qrc">
-        <normaloff>:/buttons/images/buttons/screenshot4.gif</normaloff>:/buttons/images/buttons/screenshot4.gif</iconset>
+        <normaloff>:/buttons/images/buttons/screenshot4.png</normaloff>:/buttons/images/buttons/screenshot4.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -890,7 +890,13 @@
       </property>
       <property name="icon">
        <iconset resource="icon.qrc">
-        <normaloff>:/buttons/images/buttons/combine.gif</normaloff>:/buttons/images/buttons/combine.gif</iconset>
+        <normaloff>:/buttons/images/buttons/combine.png</normaloff>:/buttons/images/buttons/combine.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>26</width>
+        <height>26</height>
+       </size>
       </property>
      </widget>
      <widget class="QPushButton" name="g_help">

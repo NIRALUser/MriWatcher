@@ -1,8 +1,6 @@
 project(MRIWatcher)
 
-cmake_minimum_required(VERSION 2.6)
-
-include(CPack)
+cmake_minimum_required(VERSION 2.8)
 
 ###### FIND ITK PACKAGE #########
 find_package(ITK)
@@ -97,15 +95,57 @@ set(MriWatcher_RES
   icon.qrc
 )
 
-QT4_WRAP_CPP(MriWatcher_MOC_HEADERS ${MriWatcher_MOC_SRCS})
-QT4_WRAP_UI(MriWatcher_FORMS_HEADERS ${MriWatcher_GUI_SRCS})
-QT4_ADD_RESOURCES(MriWatcher_RES_RCC ${MriWatcher_RES})
+qt4_wrap_cpp(MriWatcher_MOC_HEADERS ${MriWatcher_MOC_SRCS})
+qt4_wrap_ui(MriWatcher_FORMS_HEADERS ${MriWatcher_GUI_SRCS})
+qt4_add_resources(MriWatcher_RES_RCC ${MriWatcher_RES})
 
 
 add_definitions(-DQT_DLL)
 add_definitions(-DQT_THREAD_SUPPORT)
 add_definitions(${QT_DEFINITIONS})
 add_definitions(-DMriWatcher_VERSION="2.3")
+
+option(APPLE_BUNDLE "APPLE_BUNDLE" OFF)
+
+if(APPLE_BUNDLE)
+
+set(MACOSX_BUNDLE_ICON_FILE icons.icns)
+set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/images/icons.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+set(MriWatcher_SRCS ${MriWatcher_SRCS} ${CMAKE_CURRENT_SOURCE_DIR}/images/icons.icns)
+
+add_executable(MriWatcher
+  MACOSX_BUNDLE
+  ${MriWatcher_SRCS}
+  ${MriWatcher_HEADERS}
+  ${MriWatcher_MOC_HEADERS}
+  ${MriWatcher_FORMS_HEADERS}
+  ${MriWatcher_RES_RCC}
+)
+
+set(plugin_dest_dir MriWatcher.app/Contents/MacOS)
+set(qtconf_dest_dir MriWatcher.app/Contents/Resources)
+set(APPS "\${CMAKE_INSTALL_PREFIX}/MriWatcher.app")
+
+install(TARGETS MriWatcher
+  BUNDLE DESTINATION . COMPONENT Runtime
+  RUNTIME DESTINATION bin COMPONENT Runtime)
+
+install(CODE "
+  file(WRITE \"\${CMAKE_INSTALL_PREFIX}/${qtconf_dest_dir}/qt.conf\" \"\")
+  " COMPONENT Runtime)
+
+set(DIRS ${QT_LIBRARY_DIRS})
+
+install(CODE "file(GLOB_RECURSE QTPLUGINS\"\${CMAKE_INSTALL_PREFIX}
+  /${plugin_dest_dir}/plugins/*${CMAKE_SHARED_LIBRARY_SUFFIX}\")
+  include(BundleUtilities)
+  fixup_bundle(\"${APPS}\" \"\${QTPLUGINS}\" \"${DIRS}\")
+  " COMPONENT Runtime)
+
+set(CPACK_BINARY_DRAGNDROP ON)
+include(CPack)
+
+else(APPLE_BUNDLE)
 
 add_executable(MriWatcher
   ${MriWatcher_SRCS}
@@ -115,17 +155,19 @@ add_executable(MriWatcher
   ${MriWatcher_RES_RCC}
 )
 
-#message("ITKIO= " ${ITK_LIBRARIES})
+endif(APPLE_BUNDLE)
+
 
 target_link_libraries(MriWatcher
   ${GLUT_glut_LIBRARY}
   ${ITK_LIBRARIES}
   ${QT_LIBRARIES}
-  ${QT_QTMAIN_LIBRARY}
   ${QT_QTOPENGL_LIBRARY}
-  ${OPENGL_glu_LIBRARY}
   ${OPENGL_LIBRARY}
- )
+)
+
+
+
 
 
 
