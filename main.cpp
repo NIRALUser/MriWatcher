@@ -1,5 +1,5 @@
 #include <QtGui/QApplication>
-#include "mriwatchergui.h"
+#include "mriwatcherapp.h"
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
@@ -34,67 +34,69 @@ int main(int argc, char *argv[])
     return 0;
     }
 
-  QApplication  app(argc, argv);
-  MriWatcherGUI gui;
-  gui.setWindowTitle(QString("MriWatcher") + "   v " + MriWatcher_VERSION);
-  gui.show();
+  MriWatcherApp app(argc, argv);
 
-  if( argc > 1 )
-    {
-    for( int i = 1; i < argc; i++ )
-      {
-      if( (!strcmp(argv[i], "--overlay") ) || (!strcmp(argv[i], "-o") ) )
-        {
-        i++;
-        gui.LoadOverlay(argv[i]);
-        }
-      else if( !strcmp(argv[i], "--title") )
-        {
-        i++;
-        gui.setWindowTitle(QString(argv[i]) );
-        }
-      else if( (!strcmp(argv[i], "--viewAll") ) || (!strcmp(argv[i], "-A") ) )
-        {
-        gui.SetViewAllImages();
-        }
-      else if( !strcmp(argv[i], "--quit") )
-        {
-        exit(0);
-        }
-      else if( (!strcmp(argv[i], "--snapshot") ) || (!strcmp(argv[i], "-s") ) )
-        {
-        i++;
-        gui.ScreenShot( QString(argv[i]) );
-        }
-      else if( !strcmp(argv[i], "--overlayAlpha") )
-        {
-        i++;
-        int alpha;
-        sscanf(argv[i], " %d ", &alpha);
-        gui.ChangeOverlayAlpha(alpha);
-        }
-      else if( (!strcmp(argv[i], "--intensityMin") ) || (!strcmp(argv[i], "-m") ) )
-        {
-        i++;
-        int min;
-        sscanf(argv[i], " %d ", &min);
-        gui.SelectAll();
-        gui.ChangeIntensityMin(min);
-        }
-      else if( (!strcmp(argv[i], "--intensityMax") ) || (!strcmp(argv[i], "-M") ) )
-        {
-        i++;
-        int max;
-        sscanf(argv[i], " %d ", &max);
-        gui.SelectAll();
-        gui.ChangeIntensityMax(max);
-        }
-      else
-        {
-        gui.LoadFile(argv[i]);
-        }
-      }
-    }
+  // QApplication  app(argc, argv);
+  // MriWatcherGUI gui;
+  // gui.setWindowTitle(QString("MriWatcher") + "   v " + MriWatcher_VERSION);
+  // gui.show();
+
+  // if( argc > 1 )
+  //   {
+  //   for( int i = 1; i < argc; i++ )
+  //     {
+  //     if( (!strcmp(argv[i], "--overlay") ) || (!strcmp(argv[i], "-o") ) )
+  //       {
+  //       i++;
+  //       gui.LoadOverlay(argv[i]);
+  //       }
+  //     else if( !strcmp(argv[i], "--title") )
+  //       {
+  //       i++;
+  //       gui.setWindowTitle(QString(argv[i]) );
+  //       }
+  //     else if( (!strcmp(argv[i], "--viewAll") ) || (!strcmp(argv[i], "-A") ) )
+  //       {
+  //       gui.SetViewAllImages();
+  //       }
+  //     else if( !strcmp(argv[i], "--quit") )
+  //       {
+  //       exit(0);
+  //       }
+  //     else if( (!strcmp(argv[i], "--snapshot") ) || (!strcmp(argv[i], "-s") ) )
+  //       {
+  //       i++;
+  //       gui.ScreenShot( QString(argv[i]) );
+  //       }
+  //     else if( !strcmp(argv[i], "--overlayAlpha") )
+  //       {
+  //       i++;
+  //       int alpha;
+  //       sscanf(argv[i], " %d ", &alpha);
+  //       gui.ChangeOverlayAlpha(alpha);
+  //       }
+  //     else if( (!strcmp(argv[i], "--intensityMin") ) || (!strcmp(argv[i], "-m") ) )
+  //       {
+  //       i++;
+  //       int min;
+  //       sscanf(argv[i], " %d ", &min);
+  //       gui.SelectAll();
+  //       gui.ChangeIntensityMin(min);
+  //       }
+  //     else if( (!strcmp(argv[i], "--intensityMax") ) || (!strcmp(argv[i], "-M") ) )
+  //       {
+  //       i++;
+  //       int max;
+  //       sscanf(argv[i], " %d ", &max);
+  //       gui.SelectAll();
+  //       gui.ChangeIntensityMax(max);
+  //       }
+  //     else
+  //       {
+  //       gui.LoadFile(argv[i]);
+  //       }
+  //     }
+  //   }
 
   return app.exec();
 }

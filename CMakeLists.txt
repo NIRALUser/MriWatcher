@@ -60,6 +60,7 @@ endif(WIN32)
 
 set(MriWatcher_SRCS
   main.cpp
+  mriwatcherapp.cpp
   mriwatchergui.cpp
   mriwatcherframe.cpp
   imageframegui.cpp
@@ -76,6 +77,7 @@ endif(WIN32)
 
 
 set(MriWatcher_MOC_SRCS
+  mriwatcherapp.h
   mriwatchergui.h
   mriwatcherframe.h
   imageframegui.h
@@ -111,6 +113,7 @@ if(APPLE_BUNDLE)
 
 set(MACOSX_BUNDLE_ICON_FILE icons.icns)
 set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/images/icons.icns PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+
 set(MriWatcher_SRCS ${MriWatcher_SRCS} ${CMAKE_CURRENT_SOURCE_DIR}/images/icons.icns)
 
 add_executable(MriWatcher
@@ -121,6 +124,9 @@ add_executable(MriWatcher
   ${MriWatcher_FORMS_HEADERS}
   ${MriWatcher_RES_RCC}
 )
+
+set_target_properties(MriWatcher PROPERTIES
+               MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/MacOSXBundleInfo.plist.in)
 
 set(plugin_dest_dir MriWatcher.app/Contents/MacOS)
 set(qtconf_dest_dir MriWatcher.app/Contents/Resources)

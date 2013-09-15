@@ -100,7 +100,7 @@ public slots:
   void SelectAll();
 
   void UnSelectAll();
-  
+
 private:
   void ComputeMaxColumn(int &, int &);
   void ComputeHeightWidth(int &, int &, int &);

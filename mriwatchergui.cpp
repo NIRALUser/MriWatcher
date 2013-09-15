@@ -961,10 +961,14 @@ void MriWatcherGUI::resizeEvent(QResizeEvent *e)
   ReDraw();
 }
 
+
 bool MriWatcherGUI::eventFilter(QObject* o, QEvent* e)
 {
   switch( e->type() )
     {
+    case QEvent::FileOpen:
+            LoadFile(static_cast<QFileOpenEvent *>(e)->file());
+	    break;
     case QEvent::KeyPress:
       if( static_cast<QKeyEvent *>( e )->key() == Qt::Key_Right )
         {
