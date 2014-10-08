@@ -1,0 +1,33 @@
+<RCC>
+    <qresource prefix="/buttons">
+        <file>images/buttons/help.png</file>
+        <file>images/buttons/screenshot2.png</file>
+        <file>images/buttons/screenshot.png</file>
+        <file>images/buttons/resetview2.png</file>
+        <file>images/buttons/resetview3.png</file>
+        <file>images/buttons/resetview4.png</file>
+        <file>images/buttons/loadimg.png</file>
+        <file>images/buttons/loadimg2.png</file>
+        <file>images/buttons/combine.png</file>
+        <file>images/buttons/screenshot4.png</file>
+        <file>images/buttons/screenshot3.png</file>
+        <file>images/buttons/resetview.png</file>
+        <file>images/buttons/loadoverlay.png</file>
+    </qresource>
+    <qresource prefix="/window_icon">
+        <file>images/watcher_icon3.png</file>
+        <file>images/watcher_icon2.png</file>
+        <file>images/watcher_icon.png</file>
+        <file>images/icons.icns</file>
+        <file>images/icons.iconset/icon_16x16.png</file>
+        <file>images/icons.iconset/icon_16x16@2x.png</file>
+        <file>images/icons.iconset/icon_32x32.png</file>
+        <file>images/icons.iconset/icon_32x32@2x.png</file>
+        <file>images/icons.iconset/icon_128x128.png</file>
+        <file>images/icons.iconset/icon_128x128@2x.png</file>
+        <file>images/icons.iconset/icon_256x256.png</file>
+        <file>images/icons.iconset/icon_256x256@2x.png</file>
+        <file>images/icons.iconset/icon_512x512.png</file>
+        <file>images/icons.iconset/icon_512x512@2x.png</file>
+    </qresource>
+</RCC>

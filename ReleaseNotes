@@ -1,0 +1,62 @@
+MriWatcher 2.3 (Aug 21, 2013) -- nitrc svn revision 17
+
+New Features:
+- Redesign the GUI layout to work better for modern computer display
+- Rewriten the view options' algorithm
+- Add more key shortcut and give more user tips
+
+Fixed Issues:
+- Take back the orientation options, which cause the wrong pixel intensity show up
+
+
+----------------------------------------------------------------------------------------------
+
+MriWatcher 2.2 (Jan 24, 2012) -- nitrc svn revision 15
+
+New Features:
+
+- add orienation options, could load it default as "RAI" or change all images to the same orientation.
+
+
+----------------------------------------------------------------------------------------------
+
+MriWatcher 2.1 (Jan 10, 2012) -- nitrc svn revision 10 
+
+New Features:
+
+- add drag and drop functions for opening images and make an overlay.
+
+- add command line functions for calling MriWatcher(some options are different with qt3's MriWatcher to follow the tradition of Unix).
+
+Type --help to get the following instructions:
+>./MriWatcher --help
+
+Grey level images' viewer.
+Usage: MriWatcher [GreyScaleImages]... [OPTIONS]...
+
+OPTIONS
+  -A, --viewAll 		 set view options to view all images
+  -m, --intensityMin <arg> 	 set intensity minimum of all images
+  -M, --intensityMax <arg> 	 set intensity maximum of all images
+  -o, --overlayImage <file> 	 load overlay image
+  --overlayAlpha <arg> 		 set alpha of overlay image
+  --quit 			 just quit MriWatcher
+  -s, --snapshot <file> 	 set snapshot image name and save snapshot
+  --title <arg> 		 set MriWatcher main window's title
+  --help 			 display this help and exit
+  --version 			 output MriWatcher version information and exit
+
+- add new logo and quick tips
+
+- add version number and release notes
+
+
+Fixed Issues:
+
+- slice blending checkbox reverse
+
+----------------------------------------------------------------------------------------------
+
+MriWatcher 2.0 (Jan 6, 2012) -- nitrc svn revision 8 
+
+- Initial release ported Qt4 MriWatcher

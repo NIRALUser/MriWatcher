@@ -1,0 +1,1023 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MriWatcherForm</class>
+ <widget class="QWidget" name="MriWatcherForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>960</width>
+    <height>740</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icon.qrc">
+    <normaloff>:/window_icon/images/watcher_icon3.png</normaloff>:/window_icon/images/watcher_icon3.png</iconset>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout_3">
+   <property name="leftMargin">
+    <number>1</number>
+   </property>
+   <property name="topMargin">
+    <number>2</number>
+   </property>
+   <property name="rightMargin">
+    <number>1</number>
+   </property>
+   <property name="bottomMargin">
+    <number>1</number>
+   </property>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QSlider" name="g_overlay_alpha_slider">
+         <property name="value">
+          <number>50</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="invertedAppearance">
+          <bool>true</bool>
+         </property>
+         <property name="invertedControls">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QScrollArea" name="g_scrollArea">
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAsNeeded</enum>
+         </property>
+         <property name="horizontalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOff</enum>
+         </property>
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>682</width>
+            <height>693</height>
+           </rect>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QGroupBox" name="groupBox_6">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>15</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox { 
+     border: 0; 
+     border-radius: 3px; 
+ } </string>
+         </property>
+         <property name="title">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="g_slice_slider">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="value">
+          <number>50</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="tickPosition">
+          <enum>QSlider::TicksAbove</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="g_slice_label">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="g_optionsgroup">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>225</width>
+       <height>256</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QGroupBox { 
+     border: 0; 
+     border-radius: 3px; 
+ } </string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>4</y>
+        <width>221</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox { 
+     border: 1px solid gray; 
+     border-radius: 3px; 
+ } </string>
+      </property>
+      <property name="title">
+       <string>Slice View</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>23</y>
+         <width>194</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QRadioButton" name="g_xview">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="mouseTracking">
+           <bool>true</bool>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::StrongFocus</enum>
+          </property>
+          <property name="text">
+           <string>X View</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="g_yview">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Y View</string>
+          </property>
+          <property name="checked">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="g_zview">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Z View</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>70</y>
+        <width>221</width>
+        <height>78</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox { 
+     border: 1px solid gray; 
+     border-radius: 3px; 
+ } </string>
+      </property>
+      <property name="title">
+       <string>View Options</string>
+      </property>
+      <widget class="QRadioButton" name="g_viewall">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>24</y>
+         <width>110</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>View All Images</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="g_viewcolumn">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>50</y>
+         <width>98</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>View Images in</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="g_nbcolumn">
+       <property name="geometry">
+        <rect>
+         <x>117</x>
+         <y>46</y>
+         <width>46</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>999</number>
+       </property>
+       <property name="value">
+        <number>4</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>171</x>
+         <y>51</y>
+         <width>43</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Columns</string>
+       </property>
+      </widget>
+      <zorder>g_viewcolumn</zorder>
+      <zorder>g_nbcolumn</zorder>
+      <zorder>label_4</zorder>
+      <zorder>g_viewall</zorder>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>390</y>
+        <width>221</width>
+        <height>53</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox { 
+     border: 1px solid gray; 
+     border-radius: 3px; 
+ } </string>
+      </property>
+      <property name="title">
+       <string>Overlay Scale</string>
+      </property>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>25</y>
+         <width>30</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Min:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_6">
+       <property name="geometry">
+        <rect>
+         <x>92</x>
+         <y>25</y>
+         <width>30</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Max:</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="g_overlaymin">
+       <property name="geometry">
+        <rect>
+         <x>33</x>
+         <y>25</y>
+         <width>50</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="g_overlaymax">
+       <property name="geometry">
+        <rect>
+         <x>118</x>
+         <y>25</y>
+         <width>50</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="g_overlayzero">
+       <property name="geometry">
+        <rect>
+         <x>174</x>
+         <y>23</y>
+         <width>52</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Zero</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="g_loadimg">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>460</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>Load 3D grey images</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="icon.qrc">
+        <normaloff>:/buttons/images/buttons/loadimg.png</normaloff>:/buttons/images/buttons/loadimg.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>27</width>
+        <height>27</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>160</y>
+        <width>221</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox { 
+     border: 1px solid gray; 
+     border-radius: 3px; 
+ } </string>
+      </property>
+      <property name="title">
+       <string>Drawing Options</string>
+      </property>
+      <widget class="QCheckBox" name="g_draw_name">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>25</y>
+         <width>100</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Image Name</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="g_draw_position">
+       <property name="geometry">
+        <rect>
+         <x>112</x>
+         <y>25</y>
+         <width>115</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Cursor Position</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="g_draw_info">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>100</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Image Infos</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="g_draw_intensity">
+       <property name="geometry">
+        <rect>
+         <x>112</x>
+         <y>50</y>
+         <width>115</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Pixel Intensity</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_5">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>250</y>
+        <width>221</width>
+        <height>125</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox { 
+     border: 1px solid gray; 
+     border-radius: 3px; 
+ } </string>
+      </property>
+      <property name="title">
+       <string>Visualiztion Options</string>
+      </property>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>25</y>
+         <width>120</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Intensity Min:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>120</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Intensity Max:</string>
+       </property>
+      </widget>
+      <widget class="QSlider" name="g_intensity_min_slider">
+       <property name="geometry">
+        <rect>
+         <x>93</x>
+         <y>25</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="g_intensity_max_slider">
+       <property name="geometry">
+        <rect>
+         <x>93</x>
+         <y>50</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="g_blending_mode">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>75</y>
+         <width>115</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Slice Blending:</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>35</x>
+         <y>100</y>
+         <width>45</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Alpha:</string>
+       </property>
+      </widget>
+      <widget class="QSlider" name="g_alpha">
+       <property name="geometry">
+        <rect>
+         <x>93</x>
+         <y>100</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="g_loadoverlay">
+      <property name="geometry">
+       <rect>
+        <x>32</x>
+        <y>460</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Load overlay</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="icon.qrc">
+        <normaloff>:/buttons/images/buttons/loadoverlay.png</normaloff>:/buttons/images/buttons/loadoverlay.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="g_loadimg2">
+      <property name="geometry">
+       <rect>
+        <x>63</x>
+        <y>460</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Load half overlay</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="icon.qrc">
+        <normaloff>:/buttons/images/buttons/loadimg2.png</normaloff>:/buttons/images/buttons/loadimg2.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="g_reset_view">
+      <property name="geometry">
+       <rect>
+        <x>98</x>
+        <y>460</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Reset view</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="icon.qrc">
+        <normaloff>:/buttons/images/buttons/resetview3.png</normaloff>:/buttons/images/buttons/resetview3.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>26</width>
+        <height>26</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="g_screenshot">
+      <property name="geometry">
+       <rect>
+        <x>129</x>
+        <y>460</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Screen shot</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="icon.qrc">
+        <normaloff>:/buttons/images/buttons/screenshot4.png</normaloff>:/buttons/images/buttons/screenshot4.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>25</width>
+        <height>25</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="g_combine">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>460</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Create 3D image from slice</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="icon.qrc">
+        <normaloff>:/buttons/images/buttons/combine.png</normaloff>:/buttons/images/buttons/combine.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>26</width>
+        <height>26</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="g_help">
+      <property name="geometry">
+       <rect>
+        <x>191</x>
+        <y>460</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Help</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="icon.qrc">
+        <normaloff>:/buttons/images/buttons/help.png</normaloff>:/buttons/images/buttons/help.png</iconset>
+      </property>
+     </widget>
+     <widget class="QLabel" name="g_logo">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>650</y>
+        <width>111</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="icon.qrc">:/window_icon/images/watcher_icon3.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="g_tips">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>490</y>
+        <width>211</width>
+        <height>181</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="g_name_version">
+      <property name="geometry">
+       <rect>
+        <x>77</x>
+        <y>720</y>
+        <width>130</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>130</width>
+        <height>16</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>130</width>
+        <height>16</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Helvetica [Adobe]</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>groupBox_2</zorder>
+     <zorder>groupBox_3</zorder>
+     <zorder>g_loadimg</zorder>
+     <zorder>groupBox_4</zorder>
+     <zorder>groupBox_5</zorder>
+     <zorder>g_loadoverlay</zorder>
+     <zorder>g_loadimg2</zorder>
+     <zorder>g_reset_view</zorder>
+     <zorder>g_screenshot</zorder>
+     <zorder>g_combine</zorder>
+     <zorder>g_help</zorder>
+     <zorder>g_logo</zorder>
+     <zorder>g_tips</zorder>
+     <zorder>g_name_version</zorder>
+     <zorder>groupBox</zorder>
+    </widget>
+   </item>
+  </layout>
+  <zorder>g_optionsgroup</zorder>
+  <zorder></zorder>
+ </widget>
+ <resources>
+  <include location="icon.qrc"/>
+ </resources>
+ <connections/>
+</ui>
